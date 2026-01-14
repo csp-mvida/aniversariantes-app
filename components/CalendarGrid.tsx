@@ -22,7 +22,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         key={`pad-${i}`} 
         className="aspect-square bg-gray-50/30 border border-gray-100 flex items-center justify-center"
       >
-        <span className="text-xs text-gray-400"></span>
+        <span className="text-xs text-gray-400">{/* Espaço em branco para dias que não pertencem ao mês */}</span>
       </div>
     );
   }
@@ -37,7 +37,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         className="aspect-square flex items-center justify-center border border-gray-100 relative transition-colors"
         style={{ 
           backgroundColor: hasBirthday ? COLORS.primary : 'transparent',
-          color: hasBirthday ? COLORS.white : 'inherit'
+          color: hasBirthday ? COLORS.white : 'inherit' // Mantém a cor padrão se não tiver aniversariante
         }}
       >
         <span className={`font-bold ${hasBirthday ? 'text-base scale-110' : 'text-xs'}`}>
@@ -46,23 +46,9 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
       </div>
     );
   }
-
-  // Preenchimento final para completar a última linha (caso necessário)
-  const totalCells = firstDayOfMonth + daysInMonth;
-  const remainingCells = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
-  for (let i = 0; i < remainingCells; i++) {
-    days.push(
-      <div 
-        key={`end-pad-${i}`} 
-        className="aspect-square bg-gray-50/30 border border-gray-100 flex items-center justify-center"
-      >
-        <span className="text-xs text-gray-400"></span>
-      </div>
-    );
-  }
   
   return (
-    <div className="w-full text-xs p-2 rounded-lg shadow-sm border border-gray-200 bg-white">
+    <div className="w-full text-xs">
       {/* Cabeçalho com os dias da semana */}
       <div className="grid grid-cols-7 border-b mb-1" style={{ borderColor: COLORS.dark }}>
         {WEEKDAYS.map(day => (
@@ -77,7 +63,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
       </div>
       
       {/* Grade do calendário */}
-      <div className="grid grid-cols-7 gap-[2px]">
+      <div className="grid grid-cols-7 border-l border-t border-gray-100">
         {days}
       </div>
     </div>
