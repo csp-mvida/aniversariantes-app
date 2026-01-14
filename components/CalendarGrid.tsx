@@ -15,32 +15,27 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   
   const days = [];
   
-  // Preenchimento inicial (dias vazios do mês anterior)
+  // Padding for empty days
   for (let i = 0; i < firstDayOfMonth; i++) {
     days.push(
-      <div 
-        key={`pad-${i}`} 
-        className="aspect-square bg-gray-50/30 border border-gray-100 flex items-center justify-center"
-      >
-        <span className="text-xs text-gray-400">{/* Espaço em branco para dias que não pertencem ao mês */}</span>
-      </div>
+      <div key={`pad-${i}`} className="aspect-square border-[0.5px] border-gray-100" />
     );
   }
   
-  // Dias reais do mês
+  // Actual days
   for (let d = 1; d <= daysInMonth; d++) {
     const hasBirthday = birthdayDays.has(d);
     
     days.push(
       <div 
         key={`day-${d}`} 
-        className="aspect-square flex items-center justify-center border border-gray-100 relative transition-colors"
+        className="aspect-square flex items-center justify-center border-[0.5px] border-gray-100 relative"
         style={{ 
           backgroundColor: hasBirthday ? COLORS.primary : 'transparent',
-          color: hasBirthday ? COLORS.white : 'inherit' // Mantém a cor padrão se não tiver aniversariante
+          color: hasBirthday ? COLORS.white : '#4b5563'
         }}
       >
-        <span className={`font-bold ${hasBirthday ? 'text-base scale-110' : 'text-xs'}`}>
+        <span className={`text-[10px] ${hasBirthday ? 'font-black scale-110' : 'font-medium'}`}>
           {d}
         </span>
       </div>
@@ -48,13 +43,13 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   }
   
   return (
-    <div className="w-full text-xs">
-      {/* Cabeçalho com os dias da semana */}
-      <div className="grid grid-cols-7 border-b mb-1" style={{ borderColor: COLORS.dark }}>
+    <div className="w-full">
+      {/* Weekdays Header */}
+      <div className="grid grid-cols-7 mb-1">
         {WEEKDAYS.map(day => (
           <div 
             key={day} 
-            className="text-center py-1 font-black text-[10px]"
+            className="text-center py-1 font-bold text-[8px] tracking-wider"
             style={{ color: COLORS.dark }}
           >
             {day}
@@ -62,8 +57,8 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         ))}
       </div>
       
-      {/* Grade do calendário */}
-      <div className="grid grid-cols-7 border-l border-t border-gray-100">
+      {/* Grid */}
+      <div className="grid grid-cols-7 border-[0.5px] border-gray-100 shadow-sm rounded-sm overflow-hidden">
         {days}
       </div>
     </div>
