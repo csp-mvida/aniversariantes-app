@@ -38,42 +38,61 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         <header
           className="w-full flex flex-col items-center justify-center relative mb-4"
           style={{
-            background: "linear-gradient(90deg, #e0f7ef 0%, #f8fafc 100%)",
-            borderRadius: "18px 18px 0 0",
-            boxShadow: "0 2px 16px 0 rgba(0,139,90,0.07)",
-            padding: "28px 0 18px 0",
-            borderBottom: `4px solid ${COLORS.primary}`,
+            background: "linear-gradient(45deg, #b2f7ef 0%, #a0c4ff 60%, #e0f7ef 100%)",
+            borderRadius: "22px 22px 0 0",
+            boxShadow: "0 4px 24px 0 rgba(0,139,90,0.10)",
+            padding: "32px 0 22px 0",
+            borderBottom: `6px solid ${COLORS.primary}`,
             marginTop: "-18px",
+            backdropFilter: "blur(4px)",
+            WebkitBackdropFilter: "blur(4px)",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
-          <div className="flex items-center gap-3 mb-2">
-            <Balloon size={38} color={COLORS.primary} strokeWidth={2.2} className="opacity-80 drop-shadow" />
+          {/* Efeito de brilho sutil */}
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 100%)",
+              pointerEvents: "none",
+              borderRadius: "22px 22px 0 0",
+              zIndex: 1,
+            }}
+          />
+          <div className="flex items-center gap-3 mb-2 relative z-10">
+            <Balloon size={44} color={COLORS.primary} strokeWidth={2.2} className="opacity-90 drop-shadow" />
             <h1
-              className="font-sans font-extrabold tracking-widest uppercase text-[2.1rem] sm:text-[2.5rem] text-[#04724b] drop-shadow"
+              className="font-sans font-extrabold tracking-widest uppercase text-[2.3rem] sm:text-[2.7rem] text-[#04724b] drop-shadow"
               style={{
                 letterSpacing: "0.13em",
                 fontFamily: "'Cairo Play', 'Inter', sans-serif",
-                textShadow: "0 2px 8px #e0f7ef",
+                textShadow: "0 2px 12px #b2f7ef",
               }}
             >
               Aniversariantes
             </h1>
           </div>
           <span
-            className="block text-[2.7rem] sm:text-[3.2rem] font-cursive text-[#03c17e] font-bold leading-none mb-1"
+            className="block text-[2.9rem] sm:text-[3.4rem] font-cursive text-[#03c17e] font-bold leading-none mb-1 relative z-10"
             style={{
               fontFamily: "'Dancing Script', cursive",
-              textShadow: "0 2px 8px #e0f7ef",
+              textShadow: "0 2px 12px #a0c4ff",
               letterSpacing: "0.04em",
             }}
           >
             de {MONTHS[month]}
           </span>
           <span
-            className="block text-[1.05rem] text-gray-500 font-medium tracking-wide mt-1"
+            className="block text-[1.1rem] text-gray-600 font-medium tracking-wide mt-1 relative z-10"
             style={{
               fontFamily: "'Inter', sans-serif",
               letterSpacing: "0.04em",
+              textShadow: "0 1px 4px #e0f7ef",
             }}
           >
             Lista de aniversariantes {year}
