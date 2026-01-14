@@ -20,8 +20,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
     >
       {/* Bloco Único de Conteúdo - Usando h-full para preencher o container A4 */}
       <div className="w-[145mm] h-full flex flex-col items-center">
-        {/* Header Premium */}
-        <header className="flex flex-col items-center mb-8 text-center w-full relative">
+        {/* Header Premium - Removendo mb-8 para reduzir a margem superior total */}
+        <header className="flex flex-col items-center text-center w-full relative">
           <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
             className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
@@ -48,8 +48,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Footer com Logo Colorida e Posicionamento Harmonioso - Adicionando pb-4 */}
-        <footer className="w-full flex flex-col items-center gap-4 mt-8 pb-4">
+        {/* Footer com Logo Colorida e Posicionamento Harmonioso - Revertendo pb-4 */}
+        <footer className="w-full flex flex-col items-center gap-4 mt-8">
           <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
