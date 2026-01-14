@@ -18,10 +18,10 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       className="a4-container a4-preview flex flex-col items-center justify-center"
       id="printable-content"
     >
-      {/* Container do Bloco Único */}
+      {/* Container do Bloco Único - Largura controlada para elegância */}
       <div className="w-[145mm] flex flex-col items-center">
         {/* Premium Header */}
-        <header className="flex flex-col items-center mb-8 text-center w-full relative">
+        <header className="flex flex-col items-center mb-12 text-center w-full relative">
           <div className="w-20 h-1 mb-4" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
             className="text-4xl font-[900] uppercase tracking-[0.3em] mb-[-12px]"
@@ -36,7 +36,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </header>
 
         {/* Calendar Section */}
-        <section className="w-full mb-8">
+        <section className="w-full mb-10">
           <CalendarGrid 
             month={month} 
             year={year} 
@@ -45,17 +45,17 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </section>
 
         {/* List Section */}
-        <section className="w-full mb-12">
+        <section className="w-full mb-20"> {/* Aumentado para dar mais espaço antes da logo */}
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Footer Section - Agora parte do bloco centralizado */}
-        <footer className="w-full flex flex-col items-center gap-4">
-          <div className="w-full h-[1px] mb-4" style={{ backgroundColor: COLORS.secondaryBg }}></div>
+        {/* Footer Section - Centralizado no bloco com respiro extra */}
+        <footer className="w-full flex flex-col items-center gap-6 pb-8">
+          <div className="w-1/2 h-[1px]" style={{ backgroundColor: COLORS.secondaryBg }}></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
             alt="Logo Missão Vida" 
-            className="h-10 object-contain"
+            className="h-10 object-contain opacity-80"
           />
         </footer>
       </div>
