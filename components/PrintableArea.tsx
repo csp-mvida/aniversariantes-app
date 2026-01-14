@@ -4,7 +4,7 @@ import React from 'react';
 import { BirthdayEntry } from '../types';
 import { MONTHS, COLORS } from '../constants';
 import CalendarGrid from './CalendarGrid';
-import BirthdayTable from './BirthdayTable';
+import BirthdayTable from './components/BirthdayTable'; // Corrigindo importação
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -21,8 +21,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       {/* Container principal que define a área de 145mm e usa flex-col para distribuição vertical */}
       <div className="w-[145mm] h-full flex flex-col items-center">
         
-        {/* Bloco 1: Header - Adicionando mb-6 para separação do calendário */}
-        <header className="flex flex-col items-center text-center w-full relative mb-6">
+        {/* Bloco 1: Header - Removendo mb-6 para subir o bloco */}
+        <header className="flex flex-col items-center text-center w-full relative">
           <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
             className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
@@ -35,7 +35,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           </p>
         </header>
 
-        {/* Bloco 2: Calendar Section - Mantendo mb-6 */}
+        {/* Bloco 2: Calendar Section - Mantendo mb-6 para separação da lista */}
         <section className="w-full mb-6">
           <CalendarGrid 
             month={month} 
@@ -44,12 +44,12 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           />
         </section>
 
-        {/* Bloco 3: List Section - Removendo margem inferior para que o rodapé possa usar mt-auto */}
+        {/* Bloco 3: List Section - Sem margem inferior */}
         <section className="w-full">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Bloco 4: Footer - Usando mt-auto para empurrar para o final do container h-full */}
+        {/* Bloco 4: Footer - Usando mt-auto para empurrar para o final */}
         <footer className="w-full flex flex-col items-center gap-4 mt-auto">
           <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
