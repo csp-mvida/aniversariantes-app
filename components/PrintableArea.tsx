@@ -4,7 +4,7 @@ import React from 'react';
 import { BirthdayEntry } from '../types';
 import { MONTHS, COLORS } from '../constants';
 import CalendarGrid from './CalendarGrid';
-import BirthdayTable from './BirthdayTable';
+import BirthdayTable from './components/BirthdayTable';
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -24,7 +24,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         <header className="flex flex-col items-center mb-10 text-center w-full relative">
           <div className="w-16 h-1 mb-4" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
-            className="text-4xl font-cairo-play font-[800] tracking-[0.3em] mb-[-12px]"
+            className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
             style={{ color: COLORS.primary }}
           >
             Aniversariantes
