@@ -1,6 +1,7 @@
 import React from 'react';
 import { BirthdayEntry } from '../types';
 import { COLORS } from '../constants';
+import { Cake } from 'lucide-react';
 
 interface BirthdayTableProps {
   birthdays: BirthdayEntry[];
@@ -33,8 +34,11 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
             borderBottom: '2px dotted #6b7280',
           }}
         >
-          <span className="font-black text-[13px] w-14 flex-shrink-0" style={{ color: COLORS.primary }}>
-            {person.day.toString().padStart(2, '0')}/{formatMonth}
+          <span className="flex items-center gap-1 w-20 flex-shrink-0">
+            <Cake size={16} color={COLORS.primary} className="opacity-80" />
+            <span className="font-black text-[13px]" style={{ color: COLORS.primary }}>
+              {person.day.toString().padStart(2, '0')}/{formatMonth}
+            </span>
           </span>
           
           <span className="font-medium text-[14px] text-gray-900 tracking-tight flex-grow">

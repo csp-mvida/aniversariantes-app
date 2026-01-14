@@ -5,6 +5,7 @@ import { BirthdayEntry } from '../types';
 import { MONTHS, COLORS } from '../constants';
 import CalendarGrid from './CalendarGrid';
 import BirthdayTable from './BirthdayTable';
+import WatermarkBalloons from './WatermarkBalloons';
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -15,11 +16,14 @@ interface PrintableAreaProps {
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div 
-      className="a4-container a4-preview flex flex-col items-center" 
+      className="a4-container a4-preview flex flex-col items-center relative overflow-hidden" 
       id="printable-content"
     >
+      {/* Marca d'água de balões */}
+      <WatermarkBalloons />
+
       {/* Container principal que define a área de 145mm e usa flex-col para distribuição vertical */}
-      <div className="w-[145mm] h-full flex flex-col items-center">
+      <div className="w-[145mm] h-full flex flex-col items-center relative z-10">
         
         {/* Bloco 1: Header - Subindo apenas este bloco com margem negativa */}
         <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-10">
