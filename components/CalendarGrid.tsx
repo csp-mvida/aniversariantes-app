@@ -1,4 +1,5 @@
 import React from 'react';
+import { Heart } from 'lucide-react';
 import { BirthdayEntry } from '../types';
 import { COLORS } from '../constants';
 
@@ -38,12 +39,16 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         }}
       >
         {hasBirthday ? (
-          // Novo estilo para destaque: círculo com borda branca
-          <div 
-            className="w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow-md"
-            style={{ backgroundColor: COLORS.primary }}
-          >
-            <span className="font-bold text-white text-[12px]">
+          // Novo estilo para destaque: Coração
+          <div className="relative flex items-center justify-center w-full h-full">
+            <Heart 
+              className="absolute" 
+              size={36} // Tamanho maior para o coração
+              fill={COLORS.primary} 
+              color={COLORS.white} // Cor da borda do coração
+              strokeWidth={2}
+            />
+            <span className="font-bold text-white text-[12px] relative z-10">
               {d}
             </span>
           </div>
