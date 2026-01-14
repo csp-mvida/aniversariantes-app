@@ -18,10 +18,10 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       className="a4-container a4-preview"
       id="printable-content"
     >
-      {/* Header Section - Margens bem reduzidas */}
-      <header className="flex flex-col items-center mb-2 text-center w-full">
+      {/* Header Section - Adicionado mb-6 para mais respiro */}
+      <header className="flex flex-col items-center mb-6 text-center w-full">
         <h1 
-          className="text-3xl font-[900] uppercase tracking-[0.2em] mb-[-12px]"
+          className="text-3xl font-[900] uppercase tracking-[0.2em] mb-[-10px]"
           style={{ color: '#4a8d7a' }}
         >
           Aniversariantes
@@ -31,8 +31,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </p>
       </header>
 
-      {/* Calendar Section - Reduzi a largura para garantir centralização e espaço */}
-      <section className="w-[120mm] mb-4 mx-auto">
+      {/* Calendar Section - mb-8 para separar bem da lista */}
+      <section className="w-[125mm] mb-8 mx-auto">
         <CalendarGrid 
           month={month} 
           year={year} 
@@ -40,17 +40,17 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         />
       </section>
 
-      {/* List Section - flex-grow garante que use apenas o espaço disponível */}
-      <section className="w-full flex-grow overflow-hidden px-4 mb-2">
+      {/* List Section - flex-grow ocupa o espaço central de forma equilibrada */}
+      <section className="w-full flex-grow overflow-hidden px-2 mb-6">
         <BirthdayTable birthdays={birthdays} month={month} />
       </section>
 
-      {/* Footer Section - Compactado e fixado no fundo do container */}
-      <footer className="mt-auto py-2 border-t border-gray-50 w-full flex justify-center">
+      {/* Footer Section - Aumentado o pt (padding top) para dar distância da margem inferior */}
+      <footer className="mt-auto pt-6 border-t border-gray-100 w-full flex justify-center">
         <img 
           src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
           alt="Logo Missão Vida" 
-          className="h-12 object-contain"
+          className="h-10 object-contain opacity-90"
         />
       </footer>
     </div>
