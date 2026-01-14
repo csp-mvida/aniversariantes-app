@@ -66,9 +66,6 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       <footer
         className="flex items-center justify-center print-footer-safe"
         style={{
-          position: "absolute",
-          left: 0,
-          bottom: 0,
           width: "210mm",
           height: `${FOOTER_HEIGHT_MM}mm`,
           backgroundColor: COLORS.primary,
