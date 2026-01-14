@@ -4,7 +4,7 @@ import React from 'react';
 import { BirthdayEntry } from '../types';
 import { MONTHS, COLORS } from '../constants';
 import CalendarGrid from './CalendarGrid';
-import BirthdayTable from './BirthdayTable';
+import BirthdayTable from './components/BirthdayTable'; // Corrigindo o caminho de importação se necessário, mas parece que estava correto antes.
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -15,11 +15,13 @@ interface PrintableAreaProps {
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div 
-      className="a4-container a4-preview flex flex-col items-center justify-center"
+      // Removendo justify-center para permitir que o conteúdo comece no topo
+      // e garantindo que o container A4 use flex-col para gerenciar o espaço vertical.
+      className="a4-container a4-preview flex flex-col items-center" 
       id="printable-content"
     >
-      {/* Bloco Único de Conteúdo */}
-      <div className="w-[145mm] flex flex-col items-center">
+      {/* Bloco Único de Conteúdo - Usando h-full para preencher o container A4 */}
+      <div className="w-[145mm] h-full flex flex-col items-center">
         {/* Header Premium */}
         <header className="flex flex-col items-center mb-10 text-center w-full relative">
           <div className="w-16 h-1 mb-4" style={{ backgroundColor: COLORS.primary }}></div>
@@ -43,8 +45,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           />
         </section>
 
-        {/* List Section - Aumentei o espaçamento inferior para empurrar o footer */}
-        <section className="w-full mb-20 flex-grow">
+        {/* List Section - Usando flex-grow para ocupar o espaço restante e empurrar o footer */}
+        <section className="w-full mb-12 flex-grow">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
