@@ -13,12 +13,10 @@
       font-family: 'Inter', sans-serif;
       background-color: #f3f4f6;
     }
-    
     @media print {
       .no-print {
         display: none !important;
       }
-      
       body, html {
         background-color: white !important;
         margin: 0 !important;
@@ -26,18 +24,15 @@
         height: 100% !important;
         width: 100% !important;
       }
-      
       @page {
         size: A4;
-        margin: 0mm !important;
-        padding: 0mm !important;
+        margin: 0 !important;
       }
-      
       .a4-container {
         width: 210mm !important;
         height: 297mm !important;
         margin: 0 !important;
-        padding: 10mm !important;
+        padding: 0 !important;
         border: none !important;
         box-shadow: none !important;
         page-break-after: avoid !important;
@@ -46,8 +41,9 @@
         break-inside: avoid !important;
         overflow: hidden !important;
         position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
       }
-      
       * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
