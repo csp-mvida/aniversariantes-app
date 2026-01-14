@@ -19,22 +19,6 @@
     .font-cairo-play {
       font-family: 'Cairo Play', sans-serif;
     }
-    .a4-container,
-    .a4-preview {
-      width: 210mm;
-      height: 297mm;
-      background: #fffff0;
-      /* SVG textura sutil: linhas diagonais muito claras */
-      background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" fill="none"/><path d="M0 40L40 0" stroke="%23eceadf" stroke-width="1"/><path d="M-10 30L30 -10" stroke="%23eceadf" stroke-width="1"/><path d="M10 50L50 10" stroke="%23eceadf" stroke-width="1"/></svg>');
-      background-size: 40px 40px;
-      background-repeat: repeat;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow: hidden;
-    }
     @media print {
       .no-print {
         display: none !important;
@@ -56,7 +40,7 @@
         width: 210mm !important;
         height: 297mm !important;
         margin: 0 auto !important;
-        padding: 20mm 20mm 0mm 20mm !important;
+        padding: 20mm 20mm 0mm 20mm !important; /* padding-bottom: 0mm para o footer encostar na borda */
         border: none !important;
         box-shadow: none !important;
         display: flex !important;
@@ -64,10 +48,6 @@
         align-items: center !important;
         box-sizing: border-box !important;
         overflow: hidden !important;
-        background: #fffff0 !important;
-        background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="40" height="40" fill="none"/><path d="M0 40L40 0" stroke="%23eceadf" stroke-width="1"/><path d="M-10 30L30 -10" stroke="%23eceadf" stroke-width="1"/><path d="M10 50L50 10" stroke="%23eceadf" stroke-width="1"/></svg>') !important;
-        background-size: 40px 40px !important;
-        background-repeat: repeat !important;
       }
       .print-footer-safe {
         position: fixed !important;
@@ -80,6 +60,18 @@
         break-inside: avoid !important;
         page-break-inside: avoid !important;
       }
+    }
+    .a4-preview {
+      width: 210mm;
+      height: 297mm;
+      background: white;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      padding: 20mm 20mm;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
     }
   </style>
   <script type="importmap">
