@@ -18,11 +18,11 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       className="a4-container a4-preview flex flex-col items-center justify-center"
       id="printable-content"
     >
-      {/* Container do Bloco Único - Largura controlada para elegância */}
+      {/* Bloco Único de Conteúdo */}
       <div className="w-[145mm] flex flex-col items-center">
-        {/* Premium Header */}
-        <header className="flex flex-col items-center mb-12 text-center w-full relative">
-          <div className="w-20 h-1 mb-4" style={{ backgroundColor: COLORS.primary }}></div>
+        {/* Header Premium */}
+        <header className="flex flex-col items-center mb-10 text-center w-full relative">
+          <div className="w-16 h-1 mb-4" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
             className="text-4xl font-[900] uppercase tracking-[0.3em] mb-[-12px]"
             style={{ color: COLORS.primary }}
@@ -32,11 +32,10 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           <p className="font-cursive text-6xl text-gray-800 lowercase relative z-10">
             de {MONTHS[month]}
           </p>
-          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gray-100 -z-10"></div>
         </header>
 
         {/* Calendar Section */}
-        <section className="w-full mb-10">
+        <section className="w-full mb-8">
           <CalendarGrid 
             month={month} 
             year={year} 
@@ -45,17 +44,17 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </section>
 
         {/* List Section */}
-        <section className="w-full mb-20"> {/* Aumentado para dar mais espaço antes da logo */}
+        <section className="w-full mb-12">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Footer Section - Centralizado no bloco com respiro extra */}
-        <footer className="w-full flex flex-col items-center gap-6 pb-8">
-          <div className="w-1/2 h-[1px]" style={{ backgroundColor: COLORS.secondaryBg }}></div>
+        {/* Footer Sutil (Cinza/Harmônico) */}
+        <footer className="w-full flex flex-col items-center gap-4">
+          <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
             alt="Logo Missão Vida" 
-            className="h-10 object-contain opacity-80"
+            className="h-8 object-contain opacity-40 grayscale"
           />
         </footer>
       </div>
