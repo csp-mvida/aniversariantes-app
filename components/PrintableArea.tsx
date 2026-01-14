@@ -15,12 +15,11 @@ interface PrintableAreaProps {
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div 
-      className="a4-container bg-white w-[210mm] h-[297mm] py-10 px-8 shadow-2xl border border-gray-200 flex flex-col items-center overflow-hidden relative"
+      className="a4-container bg-white w-[210mm] h-[297mm] py-12 px-8 shadow-2xl border border-gray-200 flex flex-col items-center overflow-hidden relative"
       id="printable-content"
     >
-      {/* Cabeçalho Profissional - Largura ajustada para 80% */}
-      <header className="relative mb-8 flex flex-col items-center w-[80%] shrink-0">
-        {/* Barra Decorativa Superior */}
+      {/* Cabeçalho */}
+      <header className="relative mb-8 flex flex-col items-center w-[85%] shrink-0">
         <div className="w-full h-1.5 rounded-full mb-6" style={{ backgroundColor: COLORS.primary }}></div>
         
         <div className="flex flex-col items-center">
@@ -54,8 +53,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </div>
       </header>
 
-      {/* Seção do Calendário - Largura ajustada para 80% */}
-      <section className="mb-10 w-[80%] shrink-0">
+      {/* Calendário */}
+      <section className="mb-10 w-[85%] shrink-0">
         <CalendarGrid 
           month={month} 
           year={year} 
@@ -63,18 +62,20 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         />
       </section>
 
-      {/* Seção da Lista - Largura ajustada para 80% e espaço para o rodapé fixo */}
-      <section className="flex-grow w-[80%] overflow-hidden relative pb-32">
+      {/* Lista de Aniversariantes com espaço reservado para o rodapé */}
+      <section className="w-[85%] flex-grow overflow-hidden relative pb-40">
         <BirthdayTable birthdays={birthdays} />
       </section>
 
-      {/* Rodapé Fixado no Final da Página */}
-      <footer className="absolute bottom-12 left-0 right-0 flex flex-col items-center shrink-0">
-        <div className="w-[80%] h-[1px] bg-gray-100 mb-6"></div>
+      {/* Rodapé fixo no fundo absoluto da página */}
+      <footer 
+        className="absolute bottom-12 left-0 right-0 flex flex-col items-center w-full"
+      >
+        <div className="w-[85%] h-[1px] bg-gray-100 mb-6"></div>
         <img 
           src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
           alt="Logo Missão Vida" 
-          className="h-16 object-contain"
+          className="h-20 object-contain"
         />
       </footer>
     </div>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -27,14 +26,17 @@
             }
             @page {
                 size: A4;
-                margin: 5mm 15mm 5mm 15mm; /* Top/Bottom reduced, Left/Right increased for "narrower" look */
+                margin: 0; /* Removendo margens do navegador para controle total */
             }
             .a4-container {
                 box-shadow: none !important;
-                width: 100% !important;
-                margin: 0 !important;
-                padding: 0 !important;
+                width: 210mm !important; /* Forçando largura exata */
+                height: 297mm !important; /* Forçando altura exata */
+                margin: 0 auto !important;
+                padding: 10mm 15mm !important;
                 border: none !important;
+                position: relative !important;
+                page-break-after: always;
             }
             * {
                 -webkit-print-color-adjust: exact !important;
