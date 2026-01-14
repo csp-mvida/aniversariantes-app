@@ -25,8 +25,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       {/* Container principal que define a área de 145mm e usa flex-col para distribuição vertical */}
       <div className="w-[145mm] h-full flex flex-col items-center relative z-10">
         
-        {/* Bloco 1: Header - Subindo apenas este bloco com margem negativa */}
-        <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-10">
+        {/* Bloco 1: Header - Menor margem inferior para subir os blocos seguintes */}
+        <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-4">
           <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
             className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
@@ -39,8 +39,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           </p>
         </header>
 
-        {/* Bloco 2: Calendar Section - Mantendo mb-6 para separação da lista */}
-        <section className="w-full mb-6">
+        {/* Bloco 2: Calendar Section - Menor margem inferior */}
+        <section className="w-full mb-3">
           <CalendarGrid 
             month={month} 
             year={year} 
@@ -53,8 +53,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Bloco 4: Footer - Usando mt-auto para empurrar para o final */}
-        <footer className="w-full flex flex-col items-center gap-4 mt-auto">
+        {/* Bloco 4: Footer - Menor gap acima */}
+        <footer className="w-full flex flex-col items-center gap-2 mt-auto">
           <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 

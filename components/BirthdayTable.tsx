@@ -48,7 +48,7 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
         >
           <span className="flex items-center gap-2">
             <Cake size={26} color={COLORS.primary} className="opacity-80" />
-            <span className="font-black text-[20px]" style={{ color: COLORS.primary }}>
+            <span className="font-black text-[15px]" style={{ color: COLORS.primary }}>
               {person.day.toString().padStart(2, '0')}/{formatMonth}
             </span>
           </span>
