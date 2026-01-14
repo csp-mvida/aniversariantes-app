@@ -48,13 +48,13 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Footer Sutil (Cinza/Harmônico) */}
+        {/* Footer com Logo Colorida e Posicionamento Harmonioso */}
         <footer className="w-full flex flex-col items-center gap-4">
           <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
             alt="Logo Missão Vida" 
-            className="h-8 object-contain opacity-40 grayscale"
+            className="h-10 object-contain"
           />
         </footer>
       </div>
