@@ -20,7 +20,9 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
         <div 
           key={`${person.day}-${person.name}-${idx}`}
           className="w-full flex items-baseline pb-1"
-          style={{ borderBottom: '1.5px dotted #9ca3af' }}
+          style={{ 
+            borderBottom: '2px dotted #6b7280', /* Cor ligeiramente mais escura e borda mais grossa para garantir os pontos */
+          }}
         >
           <span className="font-black text-[13px] w-14 flex-shrink-0" style={{ color: COLORS.primary }}>
             {person.day.toString().padStart(2, '0')}/{formatMonth}
