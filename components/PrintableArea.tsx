@@ -18,10 +18,11 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       className="a4-container a4-preview flex flex-col items-center" 
       id="printable-content"
     >
-      {/* Bloco Único de Conteúdo - Usando h-full para preencher o container A4 */}
+      {/* Container principal que define a área de 145mm e usa flex-col para distribuição vertical */}
       <div className="w-[145mm] h-full flex flex-col items-center">
-        {/* Header Premium - Removendo mb-8 para reduzir a margem superior total */}
-        <header className="flex flex-col items-center text-center w-full relative">
+        
+        {/* Bloco 1: Header - Adicionando mb-6 para separação do calendário */}
+        <header className="flex flex-col items-center text-center w-full relative mb-6">
           <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
             className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
@@ -34,7 +35,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           </p>
         </header>
 
-        {/* Calendar Section */}
+        {/* Bloco 2: Calendar Section - Mantendo mb-6 */}
         <section className="w-full mb-6">
           <CalendarGrid 
             month={month} 
@@ -43,13 +44,13 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           />
         </section>
 
-        {/* List Section */}
-        <section className="w-full mb-8">
+        {/* Bloco 3: List Section - Removendo margem inferior para que o rodapé possa usar mt-auto */}
+        <section className="w-full">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Footer com Logo Colorida e Posicionamento Harmonioso - Revertendo pb-4 */}
-        <footer className="w-full flex flex-col items-center gap-4 mt-8">
+        {/* Bloco 4: Footer - Usando mt-auto para empurrar para o final do container h-full */}
+        <footer className="w-full flex flex-col items-center gap-4 mt-auto">
           <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
