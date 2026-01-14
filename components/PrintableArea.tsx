@@ -50,9 +50,9 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </section>
       </div>
 
-      {/* Footer Section - Ajustado para garantir visibilidade */}
-      <footer className="mt-auto pb-4 w-full flex flex-col items-center gap-4">
-        <div className="w-full h-[1px] mb-2" style={{ backgroundColor: COLORS.secondaryBg }}></div>
+      {/* Footer Section - Logo mais afastada da borda inferior */}
+      <footer className="mt-auto pb-12 w-full flex flex-col items-center gap-4">
+        <div className="w-full h-[1px] mb-4" style={{ backgroundColor: COLORS.secondaryBg }}></div>
         <img 
           src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
           alt="Logo Missão Vida" 

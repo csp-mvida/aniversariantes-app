@@ -17,9 +17,12 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   
   const days = [];
   
+  // Estilo comum para as células pontilhadas
+  const cellStyle = "aspect-[1.2/1] border-dotted border-gray-400 border-[1px] flex items-center justify-center";
+  
   for (let i = 0; i < firstDayOfMonth; i++) {
     days.push(
-      <div key={`pad-start-${i}`} className="aspect-[1.2/1] border-[1px] border-solid border-[#008b5a] bg-[#efefef]" />
+      <div key={`pad-start-${i}`} className={`${cellStyle} bg-[#efefef]`} />
     );
   }
   
@@ -28,9 +31,10 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
     days.push(
       <div 
         key={`day-${d}`} 
-        className="aspect-[1.2/1] flex items-center justify-center border-[1px] border-solid border-[#008b5a]"
+        className={cellStyle}
         style={{ 
           backgroundColor: hasBirthday ? COLORS.detail : 'transparent',
+          borderColor: hasBirthday ? COLORS.detail : '#9ca3af'
         }}
       >
         <span 
@@ -49,23 +53,27 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   const totalCells = Math.ceil((firstDayOfMonth + daysInMonth) / 7) * 7;
   for (let i = (firstDayOfMonth + daysInMonth); i < totalCells; i++) {
     days.push(
-      <div key={`pad-end-${i}`} className="aspect-[1.2/1] border-[1px] border-solid border-[#008b5a] bg-[#efefef]" />
+      <div key={`pad-end-${i}`} className={`${cellStyle} bg-[#efefef]`} />
     );
   }
   
   return (
-    <div className="w-full border-[1px] border-solid border-[#008b5a]">
-      <div className="grid grid-cols-7">
+    <div className="w-full">
+      {/* Cabeçalho dos dias da semana - Afastado do calendário */}
+      <div className="grid grid-cols-7 mb-2">
         {customWeekdays.map(day => (
           <div 
             key={day} 
-            className="text-center py-2.5 font-black text-[12px] border-[1px] border-solid border-[#008b5a] bg-[#008b5a] text-white"
+            className="text-center py-2 font-black text-[12px] text-white rounded-sm"
+            style={{ backgroundColor: COLORS.primary }}
           >
             {day}
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-7">
+      
+      {/* Grade de dias com linhas pontilhadas */}
+      <div className="grid grid-cols-7 border-t border-l border-dotted border-gray-400">
         {days}
       </div>
     </div>
