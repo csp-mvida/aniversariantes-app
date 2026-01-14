@@ -25,7 +25,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       {/* Container principal que define a área de 145mm e usa flex-col para distribuição vertical */}
       <div className="w-[145mm] h-full flex flex-col items-center relative z-10">
         
-        {/* Bloco 1: Header - Menor margem inferior para subir os blocos seguintes */}
+        {/* Bloco 1: Header */}
         <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-4">
           <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
@@ -39,7 +39,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           </p>
         </header>
 
-        {/* Bloco 2: Calendar Section - Menor margem inferior */}
+        {/* Bloco 2: Calendar Section */}
         <section className="w-full mb-3">
           <CalendarGrid 
             month={month} 
@@ -48,13 +48,13 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           />
         </section>
 
-        {/* Bloco 3: List Section - Sem margem inferior */}
+        {/* Bloco 3: List Section */}
         <section className="w-full">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Bloco 4: Footer - Menor gap acima */}
-        <footer className="w-full flex flex-col items-center gap-2 mt-auto">
+        {/* Bloco 4: Footer - margem superior aumentada */}
+        <footer className="w-full flex flex-col items-center gap-2 mt-12">
           <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
