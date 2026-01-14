@@ -19,7 +19,8 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
       {birthdays.map((person, idx) => (
         <div 
           key={`${person.day}-${person.name}-${idx}`}
-          className="w-full flex items-baseline border-b border-dotted border-gray-400 pb-0.5"
+          className="w-full flex items-baseline pb-1"
+          style={{ borderBottom: '1.5px dotted #9ca3af' }}
         >
           <span className="font-black text-[13px] w-14 flex-shrink-0" style={{ color: COLORS.primary }}>
             {person.day.toString().padStart(2, '0')}/{formatMonth}
