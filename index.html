@@ -20,12 +20,7 @@
       font-family: 'Cairo Play', sans-serif;
     }
     .a4-container {
-      background-image: url('/bg-1.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-attachment: fixed;
-      /* Garante que o fundo não seja sobrescrito */
+      /* background removido */
       -webkit-print-color-adjust: exact !important;
       print-color-adjust: exact !important;
     }
@@ -58,11 +53,7 @@
         align-items: center !important;
         box-sizing: border-box !important;
         overflow: hidden !important;
-        background-image: url('/bg-1.jpg') !important;
-        background-size: cover !important;
-        background-repeat: no-repeat !important;
-        background-position: center center !important;
-        background-attachment: fixed !important;
+        /* background removido */
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -81,7 +72,6 @@
     .a4-preview {
       width: 210mm;
       height: 297mm;
-      /* Removido o background branco para não sobrescrever o background da .a4-container */
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
       padding: 20mm 20mm;
       box-sizing: border-box;
