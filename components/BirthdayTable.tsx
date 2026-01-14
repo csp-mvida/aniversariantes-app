@@ -26,6 +26,18 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
 
   return (
     <div className="w-full flex flex-col gap-y-1">
+      {/* Cabeçalho das colunas */}
+      <div className="w-full flex items-baseline pb-1 mb-2">
+        <span className="w-20 flex-shrink-0 text-[11px] text-gray-500 font-semibold uppercase tracking-wide">
+          Data
+        </span>
+        <span className="flex-grow text-[11px] text-gray-500 font-semibold uppercase tracking-wide">
+          Aniversariantes
+        </span>
+        <span className="ml-2 text-[11px] text-gray-500 font-semibold uppercase tracking-wide">
+          Núcleo/Departamento
+        </span>
+      </div>
       {birthdays.map((person, idx) => (
         <div 
           key={`${person.day}-${person.name}-${idx}`}
