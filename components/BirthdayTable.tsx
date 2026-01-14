@@ -27,37 +27,37 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
   return (
     <div className="w-full flex flex-col gap-y-0.5">
       {/* Cabeçalho das colunas */}
-      <div className="w-full flex items-baseline pb-1 mb-1">
-        <span className="w-20 flex-shrink-0 text-[11px] text-gray-500 font-semibold uppercase tracking-wide">
+      <div className="grid grid-cols-[90px_1fr_170px] items-center pb-1 mb-1">
+        <span className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide text-left">
           Data
         </span>
-        <span className="flex-grow text-[11px] text-gray-500 font-semibold uppercase tracking-wide">
+        <span className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide text-left pl-4">
           Aniversariantes
         </span>
-        <span className="ml-2 text-[11px] text-gray-500 font-semibold uppercase tracking-wide">
+        <span className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide text-left pl-4">
           Núcleo/Departamento
         </span>
       </div>
       {birthdays.map((person, idx) => (
         <div 
           key={`${person.day}-${person.name}-${idx}`}
-          className="w-full flex items-baseline py-0.5"
+          className="grid grid-cols-[90px_1fr_170px] items-center py-0.5"
           style={{ 
             borderBottom: '1px dotted #bdbdbd',
           }}
         >
-          <span className="flex items-center gap-2 w-20 flex-shrink-0">
+          <span className="flex items-center gap-2">
             <Cake size={26} color={COLORS.primary} className="opacity-80" />
             <span className="font-black text-[20px]" style={{ color: COLORS.primary }}>
               {person.day.toString().padStart(2, '0')}/{formatMonth}
             </span>
           </span>
           
-          <span className="font-medium text-[17px] text-gray-900 tracking-tight flex-grow">
+          <span className="font-medium text-[17px] text-gray-900 tracking-tight pl-4">
             {capitalizeName(person.name)}
           </span>
           
-          <span className="text-[11px] text-gray-400 font-medium italic uppercase ml-2">
+          <span className="text-[11px] text-gray-400 font-medium italic uppercase pl-4">
             {person.department}
           </span>
         </div>
