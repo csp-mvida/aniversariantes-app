@@ -37,15 +37,24 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
           borderColor: hasBirthday ? COLORS.detail : '#9ca3af'
         }}
       >
-        <span 
-          className="font-bold"
-          style={{ 
-            fontSize: hasBirthday ? '14px' : '10px',
-            color: hasBirthday ? COLORS.white : 'black'
-          }}
-        >
-          {d}
-        </span>
+        {hasBirthday ? (
+          // Novo estilo para destaque: círculo com borda branca
+          <div 
+            className="w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow-md"
+            style={{ backgroundColor: COLORS.primary }}
+          >
+            <span className="font-bold text-white text-[12px]">
+              {d}
+            </span>
+          </div>
+        ) : (
+          // Estilo original para dias sem aniversário
+          <span 
+            className="font-bold text-[10px] text-black"
+          >
+            {d}
+          </span>
+        )}
       </div>
     );
   }
