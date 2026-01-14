@@ -21,8 +21,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       {/* Container principal que define a área de 145mm e usa flex-col para distribuição vertical */}
       <div className="w-[145mm] h-full flex flex-col items-center">
         
-        {/* Bloco 1: Header - Removendo mb-6 para subir o bloco */}
-        <header className="flex flex-col items-center text-center w-full relative">
+        {/* Bloco 1: Header - Subindo apenas este bloco com margem negativa */}
+        <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-10">
           <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
             className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
