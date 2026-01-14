@@ -6,6 +6,7 @@ import { MONTHS, COLORS } from '../constants';
 import CalendarGrid from './CalendarGrid';
 import BirthdayTable from './BirthdayTable';
 import WatermarkBalloons from './WatermarkBalloons';
+import { Balloon } from 'lucide-react';
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -33,18 +34,50 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           maxHeight: `calc(100% - ${FOOTER_HEIGHT_MM}mm)`,
         }}
       >
-        {/* Bloco 1: Header */}
-        <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-4">
-          <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
-          <h1 
-            className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
-            style={{ color: COLORS.primary }}
+        {/* Header Premium */}
+        <header
+          className="w-full flex flex-col items-center justify-center relative mb-4"
+          style={{
+            background: "linear-gradient(90deg, #e0f7ef 0%, #f8fafc 100%)",
+            borderRadius: "18px 18px 0 0",
+            boxShadow: "0 2px 16px 0 rgba(0,139,90,0.07)",
+            padding: "28px 0 18px 0",
+            borderBottom: `4px solid ${COLORS.primary}`,
+            marginTop: "-18px",
+          }}
+        >
+          <div className="flex items-center gap-3 mb-2">
+            <Balloon size={38} color={COLORS.primary} strokeWidth={2.2} className="opacity-80 drop-shadow" />
+            <h1
+              className="font-sans font-extrabold tracking-widest uppercase text-[2.1rem] sm:text-[2.5rem] text-[#04724b] drop-shadow"
+              style={{
+                letterSpacing: "0.13em",
+                fontFamily: "'Cairo Play', 'Inter', sans-serif",
+                textShadow: "0 2px 8px #e0f7ef",
+              }}
+            >
+              Aniversariantes
+            </h1>
+          </div>
+          <span
+            className="block text-[2.7rem] sm:text-[3.2rem] font-cursive text-[#03c17e] font-bold leading-none mb-1"
+            style={{
+              fontFamily: "'Dancing Script', cursive",
+              textShadow: "0 2px 8px #e0f7ef",
+              letterSpacing: "0.04em",
+            }}
           >
-            Aniversariantes
-          </h1>
-          <p className="font-cursive text-6xl text-gray-800 lowercase relative z-10">
             de {MONTHS[month]}
-          </p>
+          </span>
+          <span
+            className="block text-[1.05rem] text-gray-500 font-medium tracking-wide mt-1"
+            style={{
+              fontFamily: "'Inter', sans-serif",
+              letterSpacing: "0.04em",
+            }}
+          >
+            Lista de aniversariantes {year}
+          </span>
         </header>
 
         {/* Bloco 2: Calendar Section */}
