@@ -1,6 +1,6 @@
 import React from 'react';
 import { BirthdayEntry } from '../types';
-import { COLORS, WEEKDAYS } from '../constants';
+import { WEEKDAYS } from '../constants';
 
 interface CalendarGridProps {
   month: number;
@@ -13,12 +13,15 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const birthdayDays = new Set(birthdays.map(b => b.day));
   
+  // Custom weekdays to match the image
+  const customWeekdays = ['DOM', 'SEG', 'TER', 'QUAR', 'QUIN', 'SEX', 'SÁB'];
+  
   const days = [];
   
-  // Padding for empty days
+  // Padding for empty days at start (Grey background)
   for (let i = 0; i < firstDayOfMonth; i++) {
     days.push(
-      <div key={`pad-${i}`} className="aspect-square border-[0.5px] border-gray-200" />
+      <div key={`pad-start-${i}`} className="aspect-[1.5/1] border-[1px] border-dotted border-black bg-[#d1d5db]" />
     );
   }
   
@@ -29,28 +32,34 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
     days.push(
       <div 
         key={`day-${d}`} 
-        className="aspect-square flex items-center justify-center border-[0.5px] border-gray-200"
+        className="aspect-[1.5/1] flex items-center justify-center border-[1px] border-dotted border-black"
         style={{ 
-          backgroundColor: hasBirthday ? COLORS.primary : 'transparent',
-          color: hasBirthday ? COLORS.white : '#4b5563'
+          backgroundColor: hasBirthday ? '#70ac97' : 'transparent',
         }}
       >
-        <span className={`text-[11px] ${hasBirthday ? 'font-black' : 'font-medium'}`}>
+        <span className="text-sm font-bold text-black">
           {d}
         </span>
       </div>
     );
   }
+
+  // Padding for empty days at end to complete the grid (Grey background)
+  const totalCells = Math.ceil((firstDayOfMonth + daysInMonth) / 7) * 7;
+  for (let i = (firstDayOfMonth + daysInMonth); i < totalCells; i++) {
+    days.push(
+      <div key={`pad-end-${i}`} className="aspect-[1.5/1] border-[1px] border-dotted border-black bg-[#d1d5db]" />
+    );
+  }
   
   return (
-    <div className="w-full">
+    <div className="w-full border-[1px] border-dotted border-black">
       {/* Weekdays Header */}
-      <div className="grid grid-cols-7 mb-3">
-        {WEEKDAYS.map(day => (
+      <div className="grid grid-cols-7">
+        {customWeekdays.map(day => (
           <div 
             key={day} 
-            className="text-center py-1 font-bold text-[9px] tracking-widest"
-            style={{ color: COLORS.primary }}
+            className="text-center py-2 font-black text-[11px] border-[1px] border-dotted border-black bg-[#d1d5db] text-black"
           >
             {day}
           </div>
@@ -58,7 +67,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
       </div>
       
       {/* Grid */}
-      <div className="grid grid-cols-7 border-[0.5px] border-gray-200 shadow-sm">
+      <div className="grid grid-cols-7">
         {days}
       </div>
     </div>

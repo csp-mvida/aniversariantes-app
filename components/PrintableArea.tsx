@@ -15,59 +15,44 @@ interface PrintableAreaProps {
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div 
-      className="a4-container bg-white w-[210mm] h-[297mm] flex flex-col p-[20mm]"
+      className="a4-container bg-white w-[210mm] h-[297mm] flex flex-col items-center px-[25mm] py-[20mm]"
       id="printable-content"
       style={{ boxSizing: 'border-box', overflow: 'hidden' }}
     >
-      {/* Header */}
-      <header className="flex justify-between items-start mb-12">
-        <div>
-          <h1 
-            className="text-4xl font-black uppercase tracking-tight leading-none"
-            style={{ color: COLORS.primary }}
-          >
-            Aniversariantes
-          </h1>
-          <p className="text-xl font-medium uppercase tracking-[0.3em] mt-3" style={{ color: COLORS.primary }}>
-            {MONTHS[month]} {year}
-          </p>
-        </div>
-        <div className="flex flex-col items-end pt-2">
-          <div className="h-[2px] w-32 mb-2" style={{ backgroundColor: COLORS.primary }}></div>
-          <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">Missão Vida</span>
-        </div>
+      {/* Header Section */}
+      <header className="flex flex-col items-center mb-12 text-center">
+        <h1 
+          className="text-6xl font-[900] uppercase tracking-wider mb-[-15px]"
+          style={{ color: '#4a8d7a' }} // Specific green from the image
+        >
+          Aniversariantes
+        </h1>
+        <p className="font-cursive text-7xl text-black lowercase">
+          de {MONTHS[month]}
+        </p>
       </header>
 
-      <div className="flex flex-col gap-12 flex-grow">
-        {/* Calendar Section */}
-        <section className="w-full flex justify-center">
-          <div className="w-[85%]">
-            <CalendarGrid 
-              month={month} 
-              year={year} 
-              birthdays={birthdays} 
-            />
-          </div>
-        </section>
+      {/* Calendar Section */}
+      <section className="w-full mb-12">
+        <CalendarGrid 
+          month={month} 
+          year={year} 
+          birthdays={birthdays} 
+        />
+      </section>
 
-        {/* List Section */}
-        <section className="w-full flex-grow overflow-hidden">
-          <BirthdayTable birthdays={birthdays} />
-        </section>
-      </div>
+      {/* List Section */}
+      <section className="w-full flex-grow overflow-hidden text-center">
+        <BirthdayTable birthdays={birthdays} month={month} />
+      </section>
 
-      {/* Footer - Only visible if there's space */}
-      <footer className="mt-auto pt-6 flex justify-between items-center border-t border-gray-50">
-        <div className="flex gap-4 items-center">
-          <img 
-            src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
-            alt="Logo Missão Vida" 
-            className="h-10 object-contain opacity-80"
-          />
-        </div>
-        <p className="text-[10px] text-gray-300 font-medium">
-          Gerado em {new Date().toLocaleDateString('pt-BR')}
-        </p>
+      {/* Footer Section */}
+      <footer className="mt-auto py-8">
+        <img 
+          src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
+          alt="Logo Missão Vida" 
+          className="h-20 object-contain"
+        />
       </footer>
     </div>
   );
