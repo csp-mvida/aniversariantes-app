@@ -44,7 +44,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         }}
       >
         <span 
-          className={`font-bold text-[12px] ${hasBirthday ? 'text-white' : 'text-black'}`}
+          className={`text-[18px] ${hasBirthday ? 'text-white' : 'text-black'} font-normal`}
         >
           {d}
         </span>
