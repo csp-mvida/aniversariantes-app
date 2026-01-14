@@ -59,14 +59,14 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   
   return (
     <div className="w-full">
-      {/* Cabeçalho dos dias da semana com visual de botões modernos */}
-      <div className="grid grid-cols-7 gap-1.5 mb-4">
+      {/* Cabeçalho dos dias da semana - Design Minimalista e Retangular */}
+      <div className="grid grid-cols-7 gap-px mb-4 bg-gray-200 border border-gray-200">
         {customWeekdays.map(day => (
           <div 
             key={day} 
-            className="text-center py-2 font-extrabold text-[10px] text-white rounded-lg shadow-sm border-b-2 border-emerald-800 tracking-wider"
+            className="text-center py-2.5 font-black text-[11px] text-white tracking-[0.15em] uppercase"
             style={{ 
-              backgroundColor: COLORS.primary,
+              backgroundColor: COLORS.dark,
             }}
           >
             {day}
