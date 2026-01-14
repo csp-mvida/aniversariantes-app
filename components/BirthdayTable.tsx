@@ -1,5 +1,6 @@
 import React from 'react';
 import { BirthdayEntry } from '../types';
+import { COLORS } from '../constants';
 
 interface BirthdayTableProps {
   birthdays: BirthdayEntry[];
@@ -14,21 +15,21 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
   const formatMonth = (month + 1).toString().padStart(2, '0');
 
   return (
-    <div className="w-full flex flex-col gap-y-1.5">
+    <div className="w-full flex flex-col gap-y-2">
       {birthdays.map((person, idx) => (
         <div 
           key={`${person.day}-${person.name}-${idx}`}
-          className="w-full flex items-baseline border-b border-gray-100 pb-1"
+          className="w-full flex items-baseline border-b border-[#efefef] pb-1"
         >
-          <span className="font-black text-[13px] text-[#4a8d7a] w-14 flex-shrink-0">
+          <span className="font-black text-[14px] w-14 flex-shrink-0" style={{ color: COLORS.primary }}>
             {person.day.toString().padStart(2, '0')}/{formatMonth}
           </span>
           
-          <span className="font-extrabold text-[14px] text-gray-900 uppercase tracking-tight flex-grow">
+          <span className="font-extrabold text-[15px] text-gray-900 uppercase tracking-tight flex-grow">
             {person.name}
           </span>
           
-          <span className="text-[11px] text-gray-400 font-medium italic uppercase ml-2">
+          <span className="text-[11px] text-gray-500 font-medium italic uppercase ml-2">
             - {person.department}
           </span>
         </div>

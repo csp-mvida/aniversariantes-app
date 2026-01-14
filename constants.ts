@@ -1,4 +1,3 @@
-
 export const COLORS = {
   primary: '#008b5a',
   detail: '#03c17e',

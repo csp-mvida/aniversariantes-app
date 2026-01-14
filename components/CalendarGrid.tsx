@@ -1,5 +1,6 @@
 import React from 'react';
 import { BirthdayEntry } from '../types';
+import { COLORS } from '../constants';
 
 interface CalendarGridProps {
   month: number;
@@ -18,7 +19,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   
   for (let i = 0; i < firstDayOfMonth; i++) {
     days.push(
-      <div key={`pad-start-${i}`} className="aspect-[1.2/1] border-[1px] border-dotted border-black bg-[#d1d5db]" />
+      <div key={`pad-start-${i}`} className="aspect-[1.2/1] border-[1px] border-solid border-[#008b5a] bg-[#efefef]" />
     );
   }
   
@@ -27,12 +28,17 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
     days.push(
       <div 
         key={`day-${d}`} 
-        className="aspect-[1.2/1] flex items-center justify-center border-[1px] border-dotted border-black"
+        className="aspect-[1.2/1] flex items-center justify-center border-[1px] border-solid border-[#008b5a]"
         style={{ 
-          backgroundColor: hasBirthday ? '#70ac97' : 'transparent',
+          backgroundColor: hasBirthday ? COLORS.detail : 'transparent',
         }}
       >
-        <span className="text-[10px] font-bold text-black">
+        <span 
+          className="font-bold text-black"
+          style={{ 
+            fontSize: hasBirthday ? '20px' : '10px' 
+          }}
+        >
           {d}
         </span>
       </div>
@@ -42,17 +48,17 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   const totalCells = Math.ceil((firstDayOfMonth + daysInMonth) / 7) * 7;
   for (let i = (firstDayOfMonth + daysInMonth); i < totalCells; i++) {
     days.push(
-      <div key={`pad-end-${i}`} className="aspect-[1.2/1] border-[1px] border-dotted border-black bg-[#d1d5db]" />
+      <div key={`pad-end-${i}`} className="aspect-[1.2/1] border-[1px] border-solid border-[#008b5a] bg-[#efefef]" />
     );
   }
   
   return (
-    <div className="w-full border-[1px] border-dotted border-black">
+    <div className="w-full border-[1px] border-solid border-[#008b5a]">
       <div className="grid grid-cols-7">
         {customWeekdays.map(day => (
           <div 
             key={day} 
-            className="text-center py-1.5 font-black text-[9px] border-[1px] border-dotted border-black bg-[#d1d5db] text-black"
+            className="text-center py-1.5 font-black text-[9px] border-[1px] border-solid border-[#008b5a] bg-[#008b5a] text-white"
           >
             {day}
           </div>
