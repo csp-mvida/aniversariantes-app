@@ -58,7 +58,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         {customWeekdays.map(day => (
           <div 
             key={day} 
-            className="text-center py-1.5 font-black text-[9px] border-[1px] border-solid border-[#008b5a] bg-[#008b5a] text-white"
+            className="text-center py-2.5 font-black text-[12px] border-[1px] border-solid border-[#008b5a] bg-[#008b5a] text-white"
           >
             {day}
           </div>

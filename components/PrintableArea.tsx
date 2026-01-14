@@ -19,8 +19,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       id="printable-content"
     >
       {/* Premium Header */}
-      <header className="flex flex-col items-center mb-8 text-center w-full relative">
-        <div className="w-20 h-1 mb-6" style={{ backgroundColor: COLORS.primary }}></div>
+      <header className="flex flex-col items-center mb-6 text-center w-full relative">
+        <div className="w-20 h-1 mb-4" style={{ backgroundColor: COLORS.primary }}></div>
         <h1 
           className="text-4xl font-[900] uppercase tracking-[0.3em] mb-[-12px]"
           style={{ color: COLORS.primary }}
@@ -33,10 +33,10 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gray-100 -z-10"></div>
       </header>
 
-      {/* Main Content Area - Alinhada a 145mm para mais destaque */}
+      {/* Main Content Area */}
       <div className="w-[145mm] flex flex-col items-center">
         {/* Calendar Section */}
-        <section className="w-full mb-10">
+        <section className="w-full mb-8">
           <CalendarGrid 
             month={month} 
             year={year} 
@@ -45,18 +45,18 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </section>
 
         {/* List Section */}
-        <section className="w-full flex-grow overflow-hidden mb-8">
+        <section className="w-full flex-grow overflow-hidden mb-6">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
       </div>
 
-      {/* Footer Section - Logo Restaurada */}
-      <footer className="mt-auto pt-8 w-full flex flex-col items-center gap-4">
-        <div className="w-full h-[1px]" style={{ backgroundColor: COLORS.secondaryBg }}></div>
+      {/* Footer Section - Ajustado para garantir visibilidade */}
+      <footer className="mt-auto pb-4 w-full flex flex-col items-center gap-4">
+        <div className="w-full h-[1px] mb-2" style={{ backgroundColor: COLORS.secondaryBg }}></div>
         <img 
           src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
           alt="Logo Missão Vida" 
-          className="h-12 object-contain"
+          className="h-10 object-contain"
         />
       </footer>
     </div>
