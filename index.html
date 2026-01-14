@@ -50,6 +50,12 @@
         box-sizing: border-box !important;
         overflow: hidden !important;
       }
+      /* Garante que o footer nunca cole na borda inferior e não quebre de página */
+      .print-footer-safe {
+        margin-bottom: 18mm !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
     }
     /* Pré-visualização na tela */
     .a4-preview {

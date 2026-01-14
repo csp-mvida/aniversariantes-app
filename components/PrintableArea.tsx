@@ -53,8 +53,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Bloco 4: Footer - margem superior aumentada */}
-        <footer className="w-full flex flex-col items-center gap-2 mt-12">
+        {/* Bloco 4: Footer - margem superior aumentada e proteção contra quebra de página */}
+        <footer className="w-full flex flex-col items-center gap-2 mt-12 print-footer-safe">
           <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
