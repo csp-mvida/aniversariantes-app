@@ -4,7 +4,7 @@ import React from 'react';
 import { BirthdayEntry } from '../types';
 import { MONTHS, COLORS } from '../constants';
 import CalendarGrid from './CalendarGrid';
-import BirthdayTable from './BirthdayTable';
+import BirthdayTable from './components/BirthdayTable'; // Corrigindo importação
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -21,8 +21,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       {/* Bloco Único de Conteúdo - Usando h-full para preencher o container A4 */}
       <div className="w-[145mm] h-full flex flex-col items-center">
         {/* Header Premium */}
-        <header className="flex flex-col items-center mb-10 text-center w-full relative">
-          <div className="w-16 h-1 mb-4" style={{ backgroundColor: COLORS.primary }}></div>
+        <header className="flex flex-col items-center mb-8 text-center w-full relative">
+          <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
           <h1 
             className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
             style={{ color: COLORS.primary }}
@@ -35,7 +35,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </header>
 
         {/* Calendar Section */}
-        <section className="w-full mb-8">
+        <section className="w-full mb-6">
           <CalendarGrid 
             month={month} 
             year={year} 
@@ -44,14 +44,13 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         </section>
 
         {/* List Section */}
-        <section className="w-full mb-12">
+        <section className="w-full mb-8">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Footer com Logo Colorida e Posicionamento Harmonioso */}
-        <footer className="w-full flex flex-col items-center gap-4 mt-16">
+        {/* Footer com Logo Colorida e Posicionamento Harmonioso - Reduzindo mt-16 para mt-8 */}
+        <footer className="w-full flex flex-col items-center gap-4 mt-8">
           <div className="w-32 h-[1px] bg-gray-200"></div>
-          {/* Adicionando 'print:block' para garantir que a imagem não seja escondida por algum estilo global de impressão */}
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
             alt="Logo Missão Vida" 
