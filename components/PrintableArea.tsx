@@ -13,7 +13,7 @@ interface PrintableAreaProps {
   year: number;
 }
 
-const FOOTER_HEIGHT_MM = 38;
+const FOOTER_HEIGHT_MM = 19;
 
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
@@ -80,13 +80,13 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         <img
           src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png"
           alt="Logo Missão Vida"
-          className="h-12 object-contain print:block"
+          className="h-8 object-contain print:block"
           style={{
             filter: "brightness(0) invert(1)",
             margin: "0 auto",
             display: "block",
-            maxWidth: "80mm",
-            maxHeight: "70%",
+            maxWidth: "60mm",
+            maxHeight: "80%",
           }}
         />
       </footer>
