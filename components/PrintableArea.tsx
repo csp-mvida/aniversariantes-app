@@ -15,8 +15,7 @@ interface PrintableAreaProps {
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div 
-      // Removendo justify-center para permitir que o conteúdo comece no topo
-      // e garantindo que o container A4 use flex-col para gerenciar o espaço vertical.
+      // O a4-container/a4-preview agora não tem justify-content: center no CSS
       className="a4-container a4-preview flex flex-col items-center" 
       id="printable-content"
     >
