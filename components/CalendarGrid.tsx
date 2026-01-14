@@ -18,7 +18,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   // Padding for empty days
   for (let i = 0; i < firstDayOfMonth; i++) {
     days.push(
-      <div key={`pad-${i}`} className="aspect-square border-[0.5px] border-gray-100" />
+      <div key={`pad-${i}`} className="aspect-square border-[0.5px] border-gray-200" />
     );
   }
   
@@ -29,13 +29,13 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
     days.push(
       <div 
         key={`day-${d}`} 
-        className="aspect-square flex items-center justify-center border-[0.5px] border-gray-100 relative"
+        className="aspect-square flex items-center justify-center border-[0.5px] border-gray-200"
         style={{ 
           backgroundColor: hasBirthday ? COLORS.primary : 'transparent',
           color: hasBirthday ? COLORS.white : '#4b5563'
         }}
       >
-        <span className={`text-[10px] ${hasBirthday ? 'font-black scale-110' : 'font-medium'}`}>
+        <span className={`text-[11px] ${hasBirthday ? 'font-black' : 'font-medium'}`}>
           {d}
         </span>
       </div>
@@ -45,12 +45,12 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   return (
     <div className="w-full">
       {/* Weekdays Header */}
-      <div className="grid grid-cols-7 mb-1">
+      <div className="grid grid-cols-7 mb-3">
         {WEEKDAYS.map(day => (
           <div 
             key={day} 
-            className="text-center py-1 font-bold text-[8px] tracking-wider"
-            style={{ color: COLORS.dark }}
+            className="text-center py-1 font-bold text-[9px] tracking-widest"
+            style={{ color: COLORS.primary }}
           >
             {day}
           </div>
@@ -58,7 +58,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
       </div>
       
       {/* Grid */}
-      <div className="grid grid-cols-7 border-[0.5px] border-gray-100 shadow-sm rounded-sm overflow-hidden">
+      <div className="grid grid-cols-7 border-[0.5px] border-gray-200 shadow-sm">
         {days}
       </div>
     </div>

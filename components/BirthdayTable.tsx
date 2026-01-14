@@ -9,44 +9,45 @@ interface BirthdayTableProps {
 const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays }) => {
   if (birthdays.length === 0) {
     return (
-      <div className="text-center py-8 border-2 border-dashed border-gray-100 rounded-xl">
-        <p className="text-gray-300 font-medium text-sm">Nenhum aniversariante para exibir.</p>
+      <div className="text-center py-12 border-2 border-dashed border-gray-100 rounded-2xl">
+        <p className="text-gray-300 font-medium">Aguardando lista de aniversariantes...</p>
       </div>
     );
   }
 
   return (
-    <div className="w-full">
-      <table className="w-full text-left border-separate border-spacing-y-1.5">
-        <thead>
-          <tr>
-            <th className="pb-2 px-3 text-[9px] uppercase tracking-[0.2em] font-black text-gray-400 w-12">Dia</th>
-            <th className="pb-2 px-3 text-[9px] uppercase tracking-[0.2em] font-black text-gray-400">Nome</th>
-            <th className="pb-2 px-3 text-[9px] uppercase tracking-[0.2em] font-black text-gray-400 text-right">Setor</th>
-          </tr>
-        </thead>
-        <tbody>
-          {birthdays.map((person, idx) => (
-            <tr key={`${person.day}-${person.name}-${idx}`} className="group">
-              <td className="py-2 px-3 first:rounded-l-lg" style={{ backgroundColor: COLORS.secondaryBg }}>
-                <span className="text-xs font-black" style={{ color: COLORS.primary }}>
-                  {person.day.toString().padStart(2, '0')}
-                </span>
-              </td>
-              <td className="py-2 px-3" style={{ backgroundColor: COLORS.secondaryBg }}>
-                <span className="text-sm font-bold text-gray-700 capitalize">
-                  {person.name.toLowerCase()}
-                </span>
-              </td>
-              <td className="py-2 px-3 last:rounded-r-lg text-right" style={{ backgroundColor: COLORS.secondaryBg }}>
-                <span className="text-[10px] font-black tracking-wider uppercase text-gray-500">
-                  {person.department}
-                </span>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="w-full flex flex-col gap-2">
+      {/* Column Headers */}
+      <div className="flex px-5 mb-1">
+        <span className="w-12 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Dia</span>
+        <span className="flex-grow text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Nome</span>
+        <span className="w-32 text-right text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Setor</span>
+      </div>
+
+      {/* Rows */}
+      {birthdays.map((person, idx) => (
+        <div 
+          key={`${person.day}-${person.name}-${idx}`}
+          className="flex items-center px-5 py-3.5 rounded-xl"
+          style={{ backgroundColor: COLORS.secondaryBg }}
+        >
+          <div className="w-12">
+            <span className="text-base font-black" style={{ color: COLORS.primary }}>
+              {person.day.toString().padStart(2, '0')}
+            </span>
+          </div>
+          <div className="flex-grow">
+            <span className="text-[13px] font-bold text-gray-700">
+              {person.name.toUpperCase()}
+            </span>
+          </div>
+          <div className="w-48 text-right">
+            <span className="text-[10px] font-black tracking-[0.05em] uppercase text-gray-500">
+              {person.department}
+            </span>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
