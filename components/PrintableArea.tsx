@@ -15,46 +15,43 @@ interface PrintableAreaProps {
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div 
-      className="a4-container bg-white w-[210mm] h-[297mm] py-4 px-4 shadow-2xl border border-gray-200 flex flex-col items-center relative overflow-hidden"
+      className="a4-container bg-white w-[210mm] h-[297mm] p-8 shadow-2xl border border-gray-200 flex flex-col items-center"
       id="printable-content"
+      style={{ boxSizing: 'border-box' }}
     >
       {/* Cabeçalho */}
-      <header className="relative mb-2 flex flex-col items-center w-[85%] shrink-0">
+      <header className="mb-4 flex flex-col items-center w-full">
         <div className="w-full h-1 rounded-full mb-2" style={{ backgroundColor: COLORS.primary }}></div>
         
         <div className="flex flex-col items-center">
           <h1 
-            className="text-2xl font-black uppercase tracking-tighter mb-2 text-center"
+            className="text-3xl font-black uppercase tracking-tighter mb-2 text-center"
             style={{ color: COLORS.dark }}
           >
             Aniversariantes
           </h1>
           
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1">
-              <div className="w-1 h-1 rounded-full" style={{ backgroundColor: COLORS.detail }}></div>
-              <div className="h-[1px] w-6" style={{ backgroundColor: COLORS.detail }}></div>
-            </div>
+            <div className="w-1 h-1 rounded-full" style={{ backgroundColor: COLORS.detail }}></div>
+            <div className="h-[1px] w-8" style={{ backgroundColor: COLORS.detail }}></div>
             
             <div 
-              className="px-3 py-0.5 rounded-full border flex items-center justify-center bg-gray-50/50"
+              className="px-4 py-1 rounded-full border flex items-center justify-center bg-gray-50/50"
               style={{ borderColor: COLORS.detail }}
             >
-              <p className="text-sm font-black uppercase tracking-widest" style={{ color: COLORS.dark }}>
-                {MONTHS[month]} <span className="font-light opacity-60">|</span> {year}
+              <p className="text-base font-black uppercase tracking-widest" style={{ color: COLORS.dark }}>
+                {MONTHS[month]} | {year}
               </p>
             </div>
             
-            <div className="flex items-center gap-1">
-              <div className="h-[1px] w-6" style={{ backgroundColor: COLORS.detail }}></div>
-              <div className="w-1 h-1 rounded-full" style={{ backgroundColor: COLORS.detail }}></div>
-            </div>
+            <div className="h-[1px] w-8" style={{ backgroundColor: COLORS.detail }}></div>
+            <div className="w-1 h-1 rounded-full" style={{ backgroundColor: COLORS.detail }}></div>
           </div>
         </div>
       </header>
 
       {/* Calendário */}
-      <section className="mb-3 w-[85%] shrink-0">
+      <section className="mb-4 w-full">
         <CalendarGrid 
           month={month} 
           year={year} 
@@ -63,19 +60,17 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       </section>
 
       {/* Lista de Aniversariantes */}
-      <section className="w-[85%] flex-grow overflow-hidden">
+      <section className="w-full flex-grow flex flex-col">
         <BirthdayTable birthdays={birthdays} />
       </section>
 
-      {/* Rodapé fixo no fundo absoluto da página A4 */}
-      <footer 
-        className="absolute bottom-2 left-0 right-0 flex flex-col items-center w-full py-1 bg-white"
-      >
-        <div className="w-[85%] h-[0.5px] bg-gray-100 mb-1"></div>
+      {/* Rodapé */}
+      <footer className="mt-auto pt-4 w-full flex flex-col items-center">
+        <div className="w-full h-[0.5px] bg-gray-200 mb-2"></div>
         <img 
           src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
           alt="Logo Missão Vida" 
-          className="h-8 object-contain"
+          className="h-10 object-contain"
         />
       </footer>
     </div>
