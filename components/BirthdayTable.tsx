@@ -25,9 +25,9 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
   const formatMonth = (month + 1).toString().padStart(2, '0');
 
   return (
-    <div className="w-full flex flex-col gap-y-1">
+    <div className="w-full flex flex-col gap-y-0.5">
       {/* Cabeçalho das colunas */}
-      <div className="w-full flex items-baseline pb-1 mb-2">
+      <div className="w-full flex items-baseline pb-1 mb-1">
         <span className="w-20 flex-shrink-0 text-[11px] text-gray-500 font-semibold uppercase tracking-wide">
           Data
         </span>
@@ -41,9 +41,9 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
       {birthdays.map((person, idx) => (
         <div 
           key={`${person.day}-${person.name}-${idx}`}
-          className="w-full flex items-baseline pb-1"
+          className="w-full flex items-baseline py-0.5"
           style={{ 
-            borderBottom: '2px dotted #6b7280',
+            borderBottom: '1px dotted #bdbdbd',
           }}
         >
           <span className="flex items-center gap-1 w-20 flex-shrink-0">
@@ -53,7 +53,7 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
             </span>
           </span>
           
-          <span className="font-medium text-[14px] text-gray-900 tracking-tight flex-grow">
+          <span className="font-medium text-[17px] text-gray-900 tracking-tight flex-grow">
             {capitalizeName(person.name)}
           </span>
           
