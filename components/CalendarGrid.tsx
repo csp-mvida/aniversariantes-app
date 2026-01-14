@@ -22,7 +22,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   
   for (let i = 0; i < firstDayOfMonth; i++) {
     days.push(
-      <div key={`pad-start-${i}`} className={`${cellStyle} bg-[#efefef]`} />
+      <div key={`pad-start-${i}`} className={`${cellStyle} bg-[#f9fafb]`} />
     );
   }
   
@@ -53,19 +53,21 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   const totalCells = Math.ceil((firstDayOfMonth + daysInMonth) / 7) * 7;
   for (let i = (firstDayOfMonth + daysInMonth); i < totalCells; i++) {
     days.push(
-      <div key={`pad-end-${i}`} className={`${cellStyle} bg-[#efefef]`} />
+      <div key={`pad-end-${i}`} className={`${cellStyle} bg-[#f9fafb]`} />
     );
   }
   
   return (
     <div className="w-full">
-      {/* Cabeçalho dos dias da semana - Afastado do calendário */}
-      <div className="grid grid-cols-7 mb-2">
+      {/* Cabeçalho dos dias da semana com visual de botões modernos */}
+      <div className="grid grid-cols-7 gap-1.5 mb-4">
         {customWeekdays.map(day => (
           <div 
             key={day} 
-            className="text-center py-2 font-black text-[12px] text-white rounded-sm"
-            style={{ backgroundColor: COLORS.primary }}
+            className="text-center py-2 font-extrabold text-[10px] text-white rounded-lg shadow-sm border-b-2 border-emerald-800 tracking-wider"
+            style={{ 
+              backgroundColor: COLORS.primary,
+            }}
           >
             {day}
           </div>
