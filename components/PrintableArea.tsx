@@ -43,13 +43,13 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           />
         </section>
 
-        {/* List Section */}
-        <section className="w-full mb-12">
+        {/* List Section - Aumentei o espaçamento inferior para empurrar o footer */}
+        <section className="w-full mb-20 flex-grow">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
         {/* Footer com Logo Colorida e Posicionamento Harmonioso */}
-        <footer className="w-full flex flex-col items-center gap-4">
+        <footer className="w-full flex flex-col items-center gap-4 mt-auto">
           <div className="w-32 h-[1px] bg-gray-200"></div>
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 

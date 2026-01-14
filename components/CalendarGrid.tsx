@@ -1,5 +1,4 @@
 import React from 'react';
-import { Heart } from 'lucide-react';
 import { BirthdayEntry } from '../types';
 import { COLORS } from '../constants';
 
@@ -29,37 +28,26 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   
   for (let d = 1; d <= daysInMonth; d++) {
     const hasBirthday = birthdayDays.has(d);
+    
+    // Ajuste de estilo para dias com aniversário: fundo colorido e borda branca sólida
+    const dayCellStyle = hasBirthday 
+      ? `aspect-[1.2/1] border-solid border-white border-[2px] flex items-center justify-center`
+      : cellStyle;
+
     days.push(
       <div 
         key={`day-${d}`} 
-        className={cellStyle}
+        className={dayCellStyle}
         style={{ 
           backgroundColor: hasBirthday ? COLORS.detail : 'transparent',
-          borderColor: hasBirthday ? COLORS.detail : '#9ca3af'
+          borderColor: hasBirthday ? COLORS.white : '#9ca3af'
         }}
       >
-        {hasBirthday ? (
-          // Novo estilo para destaque: Coração
-          <div className="relative flex items-center justify-center w-full h-full">
-            <Heart 
-              className="absolute" 
-              size={36} // Tamanho maior para o coração
-              fill={COLORS.primary} 
-              color={COLORS.white} // Cor da borda do coração
-              strokeWidth={2}
-            />
-            <span className="font-bold text-white text-[12px] relative z-10">
-              {d}
-            </span>
-          </div>
-        ) : (
-          // Estilo original para dias sem aniversário
-          <span 
-            className="font-bold text-[10px] text-black"
-          >
-            {d}
-          </span>
-        )}
+        <span 
+          className={`font-bold text-[12px] ${hasBirthday ? 'text-white' : 'text-black'}`}
+        >
+          {d}
+        </span>
       </div>
     );
   }
@@ -89,6 +77,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
       </div>
       
       {/* Grade de dias com linhas pontilhadas */}
+      {/* Nota: A borda da grade externa precisa ser ajustada para não conflitar com as bordas internas brancas dos dias de aniversário */}
       <div className="grid grid-cols-7 border-t border-l border-dotted border-gray-400">
         {days}
       </div>
