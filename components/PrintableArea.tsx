@@ -18,39 +18,45 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
       className="a4-container a4-preview"
       id="printable-content"
     >
-      {/* Header Section - Adicionado mb-6 para mais respiro */}
-      <header className="flex flex-col items-center mb-6 text-center w-full">
+      {/* Premium Header */}
+      <header className="flex flex-col items-center mb-10 text-center w-full relative">
+        <div className="w-20 h-0.5 bg-[#4a8d7a] mb-6 opacity-30"></div>
         <h1 
-          className="text-3xl font-[900] uppercase tracking-[0.2em] mb-[-10px]"
+          className="text-4xl font-[900] uppercase tracking-[0.3em] mb-[-12px] opacity-90"
           style={{ color: '#4a8d7a' }}
         >
           Aniversariantes
         </h1>
-        <p className="font-cursive text-5xl text-black lowercase">
+        <p className="font-cursive text-6xl text-gray-900 lowercase relative z-10">
           de {MONTHS[month]}
         </p>
+        <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gray-100 -z-10"></div>
       </header>
 
-      {/* Calendar Section - mb-8 para separar bem da lista */}
-      <section className="w-[125mm] mb-8 mx-auto">
-        <CalendarGrid 
-          month={month} 
-          year={year} 
-          birthdays={birthdays} 
-        />
-      </section>
+      {/* Main Content Area - Alinhada a 125mm */}
+      <div className="w-[125mm] flex flex-col items-center">
+        {/* Calendar Section */}
+        <section className="w-full mb-10">
+          <CalendarGrid 
+            month={month} 
+            year={year} 
+            birthdays={birthdays} 
+          />
+        </section>
 
-      {/* List Section - flex-grow ocupa o espaço central de forma equilibrada */}
-      <section className="w-full flex-grow overflow-hidden px-2 mb-6">
-        <BirthdayTable birthdays={birthdays} month={month} />
-      </section>
+        {/* List Section - Agora com a mesma largura do calendário */}
+        <section className="w-full flex-grow overflow-hidden mb-8">
+          <BirthdayTable birthdays={birthdays} month={month} />
+        </section>
+      </div>
 
-      {/* Footer Section - Aumentado o pt (padding top) para dar distância da margem inferior */}
-      <footer className="mt-auto pt-6 border-t border-gray-100 w-full flex justify-center">
+      {/* Footer Section */}
+      <footer className="mt-auto pt-8 w-full flex flex-col items-center gap-4">
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
         <img 
           src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
           alt="Logo Missão Vida" 
-          className="h-10 object-contain opacity-90"
+          className="h-12 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all"
         />
       </footer>
     </div>
