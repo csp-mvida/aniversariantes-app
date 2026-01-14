@@ -15,7 +15,6 @@ interface PrintableAreaProps {
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div 
-      // O a4-container/a4-preview agora não tem justify-content: center no CSS
       className="a4-container a4-preview flex flex-col items-center" 
       id="printable-content"
     >
@@ -44,18 +43,19 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           />
         </section>
 
-        {/* List Section - Removendo flex-grow para que o rodapé não seja empurrado para o fundo da página */}
+        {/* List Section */}
         <section className="w-full mb-12">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
 
-        {/* Footer com Logo Colorida e Posicionamento Harmonioso - Adicionando mt-16 para criar espaço fixo acima */}
+        {/* Footer com Logo Colorida e Posicionamento Harmonioso */}
         <footer className="w-full flex flex-col items-center gap-4 mt-16">
           <div className="w-32 h-[1px] bg-gray-200"></div>
+          {/* Adicionando 'print:block' para garantir que a imagem não seja escondida por algum estilo global de impressão */}
           <img 
             src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png" 
             alt="Logo Missão Vida" 
-            className="h-10 object-contain"
+            className="h-10 object-contain print:block"
           />
         </footer>
       </div>
