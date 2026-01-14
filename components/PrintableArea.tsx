@@ -13,18 +13,26 @@ interface PrintableAreaProps {
   year: number;
 }
 
+const FOOTER_HEIGHT_MM = 38;
+
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div 
       className="a4-container a4-preview flex flex-col items-center relative overflow-hidden" 
       id="printable-content"
+      style={{ position: "relative" }}
     >
       {/* Marca d'água de balões */}
       <WatermarkBalloons />
 
-      {/* Container principal que define a área de 145mm e usa flex-col para distribuição vertical */}
-      <div className="w-[145mm] h-full flex flex-col items-center relative z-10">
-        
+      {/* Conteúdo principal, reservando espaço para o footer */}
+      <div
+        className="w-[145mm] flex flex-col items-center relative z-10"
+        style={{
+          minHeight: `calc(100% - ${FOOTER_HEIGHT_MM}mm)`,
+          maxHeight: `calc(100% - ${FOOTER_HEIGHT_MM}mm)`,
+        }}
+      >
         {/* Bloco 1: Header */}
         <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-4">
           <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
@@ -52,29 +60,36 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         <section className="w-full">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
-
-        {/* Bloco 4: Footer verde, logo centralizada e branca */}
-        <footer
-          className="w-[145mm] flex flex-col items-center justify-center mt-12 print-footer-safe"
-          style={{
-            backgroundColor: COLORS.primary,
-            minHeight: "38mm",
-            borderRadius: "0 0 12px 12px",
-          }}
-        >
-          <img
-            src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png"
-            alt="Logo Missão Vida"
-            className="h-12 object-contain print:block"
-            style={{
-              filter: "brightness(0) invert(1)",
-              margin: "0 auto",
-              display: "block",
-              maxWidth: "80mm",
-            }}
-          />
-        </footer>
       </div>
+
+      {/* Bloco 4: Footer verde, ocupa toda a largura inferior da página */}
+      <footer
+        className="flex items-center justify-center print-footer-safe"
+        style={{
+          position: "absolute",
+          left: 0,
+          bottom: 0,
+          width: "210mm",
+          height: `${FOOTER_HEIGHT_MM}mm`,
+          backgroundColor: COLORS.primary,
+          borderRadius: "0 0 12px 12px",
+          zIndex: 20,
+          display: "flex",
+        }}
+      >
+        <img
+          src="https://mvida.org.br/wp-content/uploads/2023/05/Logo-Missao-Vida-2020.png"
+          alt="Logo Missão Vida"
+          className="h-12 object-contain print:block"
+          style={{
+            filter: "brightness(0) invert(1)",
+            margin: "0 auto",
+            display: "block",
+            maxWidth: "80mm",
+            maxHeight: "70%",
+          }}
+        />
+      </footer>
     </div>
   );
 };
