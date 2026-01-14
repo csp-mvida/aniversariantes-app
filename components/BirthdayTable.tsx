@@ -46,9 +46,9 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
             borderBottom: '1px dotted #bdbdbd',
           }}
         >
-          <span className="flex items-center gap-1 w-20 flex-shrink-0">
-            <Cake size={16} color={COLORS.primary} className="opacity-80" />
-            <span className="font-black text-[13px]" style={{ color: COLORS.primary }}>
+          <span className="flex items-center gap-2 w-20 flex-shrink-0">
+            <Cake size={26} color={COLORS.primary} className="opacity-80" />
+            <span className="font-black text-[20px]" style={{ color: COLORS.primary }}>
               {person.day.toString().padStart(2, '0')}/{formatMonth}
             </span>
           </span>
@@ -57,8 +57,8 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
             {capitalizeName(person.name)}
           </span>
           
-          <span className="text-[10px] text-gray-400 font-medium italic uppercase ml-2">
-            - {person.department}
+          <span className="text-[11px] text-gray-400 font-medium italic uppercase ml-2">
+            {person.department}
           </span>
         </div>
       ))}
