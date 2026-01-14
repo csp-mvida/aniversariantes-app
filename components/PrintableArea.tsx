@@ -4,7 +4,7 @@ import React from 'react';
 import { BirthdayEntry } from '../types';
 import { COLORS, MONTHS } from '../constants';
 import CalendarGrid from './CalendarGrid';
-import BirthdayTable from './components/BirthdayTable'; // Certifique-se de que o caminho está correto
+import BirthdayTable from './BirthdayTable';
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
