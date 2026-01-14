@@ -2,11 +2,10 @@
 
 import React from 'react';
 import { BirthdayEntry } from '../types';
-import { COLORS } from '../constants';
+import { MONTHS, COLORS } from '../constants';
 import CalendarGrid from './CalendarGrid';
 import BirthdayTable from './BirthdayTable';
 import WatermarkBalloons from './WatermarkBalloons';
-import BirthdayHeader from './BirthdayHeader';
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -34,8 +33,19 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           maxHeight: `calc(100% - ${FOOTER_HEIGHT_MM}mm)`,
         }}
       >
-        {/* Novo Header alegre */}
-        <BirthdayHeader month={month} year={year} />
+        {/* Bloco 1: Header */}
+        <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-4">
+          <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
+          <h1 
+            className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
+            style={{ color: COLORS.primary }}
+          >
+            Aniversariantes
+          </h1>
+          <p className="font-cursive text-6xl text-gray-800 lowercase relative z-10">
+            de {MONTHS[month]}
+          </p>
+        </header>
 
         {/* Bloco 2: Calendar Section */}
         <section className="w-full mb-3">
