@@ -22,7 +22,7 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         key={`pad-${i}`} 
         className="aspect-square bg-gray-50/30 border border-gray-100 flex items-center justify-center"
       >
-        {/* Espaço em branco para dias que não pertencem ao mês */}
+        <span className="text-xs text-gray-400">{/* Espaço em branco para dias que não pertencem ao mês */}</span>
       </div>
     );
   }
@@ -37,10 +37,10 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         className="aspect-square flex items-center justify-center border border-gray-100 relative transition-colors"
         style={{ 
           backgroundColor: hasBirthday ? COLORS.primary : 'transparent',
-          color: hasBirthday ? COLORS.white : 'transparent' // Esconde o número se não tiver aniversariante
+          color: hasBirthday ? COLORS.white : 'inherit' // Mantém a cor padrão se não tiver aniversariante
         }}
       >
-        <span className={`text-xs font-bold ${hasBirthday ? 'scale-110' : ''}`}>
+        <span className={`font-bold ${hasBirthday ? 'text-base scale-110' : 'text-xs'}`}>
           {d}
         </span>
       </div>
