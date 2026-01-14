@@ -53,7 +53,7 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
             </span>
           </span>
           
-          <span className="font-medium text-[17px] text-gray-900 tracking-tight pl-4">
+          <span className="font-medium text-[15px] text-gray-900 tracking-tight pl-4 whitespace-nowrap overflow-hidden text-ellipsis">
             {capitalizeName(person.name)}
           </span>
           
