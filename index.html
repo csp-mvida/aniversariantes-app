@@ -20,13 +20,12 @@
       font-family: 'Cairo Play', sans-serif;
     }
     
-    /* Container para permitir escala responsiva do A4 */
     .a4-wrapper {
       width: 100%;
-      overflow-x: auto;
       display: flex;
       justify-content: center;
       padding: 1rem 0;
+      overflow-x: auto;
     }
 
     .a4-preview {
@@ -42,18 +41,18 @@
       overflow: hidden;
       transform-origin: top center;
       flex-shrink: 0;
+      transition: transform 0.2s;
     }
 
     /* Escala automática para telas menores que 210mm (aprox 794px) */
     @media screen and (max-width: 850px) {
       .a4-wrapper {
-        justify-content: flex-start;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
       }
       .a4-preview {
-        /* Permite que a folha seja visualizada em miniatura se necessário, 
-           mas aqui optamos pelo scroll horizontal para manter legibilidade total */
+        /* A escala será aplicada via JS para melhor precisão */
       }
     }
 
@@ -94,6 +93,30 @@
       }
     }
   </style>
+  <script>
+    // Escala responsiva para .a4-preview em telas pequenas
+    function scaleA4Preview() {
+      var a4 = document.querySelector('.a4-preview');
+      if (!a4) return;
+      var a4WidthPx = 794; // 210mm em px a 96dpi
+      var windowWidth = window.innerWidth;
+      var scale = 1;
+      if (windowWidth < a4WidthPx + 32) { // 32px de margem
+        scale = (windowWidth - 24) / a4WidthPx; // 12px padding de cada lado
+        if (scale > 1) scale = 1;
+        if (scale < 0.3) scale = 0.3;
+        a4.style.transform = "scale(" + scale + ")";
+        a4.style.marginLeft = "0";
+        a4.style.marginRight = "0";
+      } else {
+        a4.style.transform = "scale(1)";
+        a4.style.marginLeft = "";
+        a4.style.marginRight = "";
+      }
+    }
+    window.addEventListener('DOMContentLoaded', scaleA4Preview);
+    window.addEventListener('resize', scaleA4Preview);
+  </script>
   <script type="importmap">
     {
       "imports": {
