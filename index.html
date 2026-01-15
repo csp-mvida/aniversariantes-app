@@ -9,15 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo+Play:wght@800&family=Inter:wght@400;500;600;700;800;900&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    body {
       font-family: 'Inter', sans-serif;
       background-color: #f3f4f6;
-      overflow: hidden;
     }
     .font-cursive {
       font-family: 'Dancing Script', cursive;
@@ -25,20 +19,16 @@
     .font-cairo-play {
       font-family: 'Cairo Play', sans-serif;
     }
+    
+    /* Container para permitir escala responsiva do A4 */
     .a4-wrapper {
-      width: 100vw;
-      height: 100vh;
-      min-width: 0;
-      min-height: 0;
+      width: 100%;
+      overflow-x: auto;
       display: flex;
       justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      box-sizing: border-box;
-      background: #f3f4f6;
-      padding: 0;
-      margin: 0;
+      padding: 1rem 0;
     }
+
     .a4-preview {
       width: 210mm;
       height: 297mm;
@@ -50,11 +40,23 @@
       flex-direction: column;
       align-items: center;
       overflow: hidden;
-      transform-origin: center center;
+      transform-origin: top center;
       flex-shrink: 0;
-      transition: transform 0.2s;
-      margin: 0;
     }
+
+    /* Escala automática para telas menores que 210mm (aprox 794px) */
+    @media screen and (max-width: 850px) {
+      .a4-wrapper {
+        justify-content: flex-start;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .a4-preview {
+        /* Permite que a folha seja visualizada em miniatura se necessário, 
+           mas aqui optamos pelo scroll horizontal para manter legibilidade total */
+      }
+    }
+
     @media print {
       html, body, #root {
         margin: 0 !important;
@@ -92,46 +94,6 @@
       }
     }
   </style>
-  <script>
-    // Escala responsiva para .a4-preview em telas pequenas, considerando largura e altura
-    function scaleA4Preview() {
-      var a4 = document.querySelector('.a4-preview');
-      var wrapper = document.querySelector('.a4-wrapper');
-      if (!a4 || !wrapper) return;
-      // 210mm = 794px, 297mm = 1123px @ 96dpi
-      var a4WidthPx = 794;
-      var a4HeightPx = 1123;
-      var windowWidth = window.innerWidth;
-      var windowHeight = window.innerHeight;
-
-      // Espaço de margem mínima para não colar nas bordas
-      var marginW = 0;
-      var marginH = 0;
-
-      var availableWidth = windowWidth - marginW;
-      var availableHeight = windowHeight - marginH;
-
-      var scaleW = availableWidth / a4WidthPx;
-      var scaleH = availableHeight / a4HeightPx;
-      var scale = Math.min(scaleW, scaleH, 1);
-
-      // Limite mínimo para não sumir
-      if (scale < 0.15) scale = 0.15;
-
-      a4.style.transform = "scale(" + scale + ")";
-      // Centralização absoluta
-      a4.style.position = "absolute";
-      a4.style.top = "50%";
-      a4.style.left = "50%";
-      a4.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
-      a4.style.margin = "0";
-      wrapper.style.justifyContent = "center";
-      wrapper.style.alignItems = "center";
-      wrapper.style.overflow = "hidden";
-    }
-    window.addEventListener('DOMContentLoaded', scaleA4Preview);
-    window.addEventListener('resize', scaleA4Preview);
-  </script>
   <script type="importmap">
     {
       "imports": {
