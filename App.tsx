@@ -98,7 +98,10 @@ const App: React.FC = () => {
       {/* Preview and Printable Area Wrapper */}
       <div 
         className="w-full flex justify-center pb-0 print:overflow-visible print:pb-0 md:items-center md:min-h-[calc(100vh-180px)]"
-        style={{ overflowX: scale < 1 ? 'hidden' : 'auto' }}
+        style={{
+          overflowX: scale < 1 ? 'hidden' : 'auto',
+          minHeight: scale < 1 ? 0 : undefined, // Remove altura mínima no mobile
+        }}
       >
         <div 
           className="print:block"
