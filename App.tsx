@@ -97,18 +97,18 @@ const App: React.FC = () => {
 
       {/* Preview and Printable Area Wrapper */}
       <div 
-        className="w-full max-w-full pb-8 print:overflow-visible print:pb-0"
-        style={{ overflowX: scale < 1 ? 'hidden' : 'auto' }} // Conditionally control overflow
+        className="w-full max-w-full pb-8 print:overflow-visible print:pb-0 flex justify-center"
+        style={{ overflowX: scale < 1 ? 'hidden' : 'auto' }}
       >
         <div 
-          className="flex justify-center min-w-max md:min-w-0 print:block"
+          className="print:block"
           style={{ 
             transform: `scale(${scale})`, 
             transformOrigin: 'top center',
-            // Garante que o container pai se ajuste ao tamanho escalado no mobile
             width: scale < 1 ? `${A4_WIDTH_PX * scale}px` : 'auto',
-            height: scale < 1 ? `${(A4_WIDTH_PX * 1.414) * scale}px` : 'auto', // 1.414 é a proporção A4
-            margin: scale < 1 ? '0 auto' : '0',
+            height: scale < 1 ? `${(A4_WIDTH_PX * 1.414) * scale}px` : 'auto',
+            margin: scale < 1 ? '0 auto' : '0 auto',
+            display: 'block',
           }}
         >
           <PrintableArea 
