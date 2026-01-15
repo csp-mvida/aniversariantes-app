@@ -96,7 +96,10 @@ const App: React.FC = () => {
       </div>
 
       {/* Preview and Printable Area Wrapper */}
-      <div className="w-full max-w-full overflow-x-auto pb-8 print:overflow-visible print:pb-0">
+      <div 
+        className="w-full max-w-full pb-8 print:overflow-visible print:pb-0"
+        style={{ overflowX: scale < 1 ? 'hidden' : 'auto' }} // Conditionally control overflow
+      >
         <div 
           className="flex justify-center min-w-max md:min-w-0 print:block"
           style={{ 
