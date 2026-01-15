@@ -8,6 +8,9 @@ import PrintableArea from './components/PrintableArea';
 const A4_WIDTH_PX = 794;
 const A4_HEIGHT_PX = 1122;
 
+// Novo breakpoint para tablets e menores
+const SCALE_BREAKPOINT = 850;
+
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
     month: new Date().getMonth(),
@@ -18,7 +21,7 @@ const App: React.FC = () => {
   
   const [scale, setScale] = useState(1);
 
-  // Lógica para calcular a escala em telas pequenas
+  // Lógica para calcular a escala em telas menores que o breakpoint
   useEffect(() => {
     const calculateScale = () => {
       // Verifica se estamos em modo de impressão
@@ -28,7 +31,7 @@ const App: React.FC = () => {
       }
 
       const screenWidth = window.innerWidth;
-      if (screenWidth < 768) {
+      if (screenWidth < SCALE_BREAKPOINT) {
         // 16px de padding total (8px de cada lado, ou 1rem)
         const availableWidth = screenWidth - 32; 
         const newScale = availableWidth / A4_WIDTH_PX;
