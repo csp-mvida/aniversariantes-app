@@ -41,8 +41,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           padding: "0 0",
         }}
       >
-        {/* Grade do calendário - Largura ajustada para 65% e centralizada */}
-        <section className="w-[65%] mb-3 mt-[60mm]">
+        {/* Bloco 1 (Calendário) - Margem superior reduzida de 60mm para 40mm */}
+        <section className="w-[65%] mb-3 mt-[40mm]">
           <CalendarGrid
             month={month}
             year={year}
@@ -50,7 +50,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           />
         </section>
 
-        {/* Lista de aniversariantes - Largura ajustada para 65% e centralizada */}
+        {/* Bloco 2 (Lista) - Largura ajustada para 65% e centralizada */}
         <section className="w-[65%]">
           <BirthdayTable birthdays={birthdays} month={month} />
         </section>
