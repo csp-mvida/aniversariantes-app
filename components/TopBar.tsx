@@ -20,7 +20,7 @@ const TopBar: React.FC = () => (
       >
         Gerador de <span className="lowercase">de</span> Calendário
         <span
-          className="ml-1 font-bold"
+          className="ml-1 font-extrabold"
           style={{ color: COLORS.detail }}
         >
           /2026
