@@ -4,8 +4,9 @@ import { COLORS } from './constants';
 import ConfigForm from './components/ConfigForm';
 import PrintableArea from './components/PrintableArea';
 
-// Dimensões A4 em pixels (aproximadamente 794px de largura para 96dpi)
-const A4_WIDTH_PX = 794; 
+// Dimensões A4 em pixels (aproximadamente 794px x 1122px para 96dpi)
+const A4_WIDTH_PX = 794;
+const A4_HEIGHT_PX = 1122;
 
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
@@ -27,8 +28,6 @@ const App: React.FC = () => {
       }
 
       const screenWidth = window.innerWidth;
-      
-      // Se a tela for menor que 768px (mobile), calcula a escala
       if (screenWidth < 768) {
         // 16px de padding total (8px de cada lado, ou 1rem)
         const availableWidth = screenWidth - 32; 
@@ -41,23 +40,18 @@ const App: React.FC = () => {
 
     calculateScale();
     window.addEventListener('resize', calculateScale);
-    
     return () => window.removeEventListener('resize', calculateScale);
   }, []);
-
 
   const handleGenerate = (rawList: string, month: number, year: number) => {
     const lines = rawList.split('\n').filter(line => line.trim() !== '');
     const birthdays: BirthdayEntry[] = lines.map(line => {
       const parts = line.split('/').map(p => p.trim());
       if (parts.length < 2) return null;
-      
       const day = parseInt(parts[0], 10);
       const name = parts[1];
       const department = parts[2] || 'GERAL';
-      
       if (isNaN(day)) return null;
-      
       return { day, name, department };
     }).filter((b): b is BirthdayEntry => b !== null);
 
@@ -76,6 +70,9 @@ const App: React.FC = () => {
   const handlePrint = () => {
     window.print();
   };
+
+  // Altura escalada da folha A4 em px
+  const scaledHeight = scale < 1 ? `${A4_HEIGHT_PX * scale}px` : undefined;
 
   return (
     <div className="flex flex-col items-center py-4 md:py-8 px-4 sm:px-6 print:p-0 print:m-0">
@@ -99,8 +96,10 @@ const App: React.FC = () => {
       <div 
         className="w-full flex justify-center pb-0 print:overflow-visible print:pb-0 md:items-center md:min-h-[calc(100vh-180px)]"
         style={{
-          overflowX: scale < 1 ? 'hidden' : 'auto'
-          // NUNCA defina minHeight aqui!
+          overflowX: scale < 1 ? 'hidden' : 'auto',
+          height: scaledHeight, // Aplica altura escalada no mobile
+          minHeight: scaledHeight, // Garante que não haja espaço extra
+          alignItems: scale < 1 ? 'flex-start' : undefined, // Não centraliza verticalmente no mobile
         }}
       >
         <div 
