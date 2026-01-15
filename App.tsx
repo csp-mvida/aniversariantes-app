@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BirthdayEntry, AppState } from './types';
 import { COLORS } from './constants';
 import ConfigForm from './components/ConfigForm';
 import PrintableArea from './components/PrintableArea';
+
+// Dimensões A4 em pixels (aproximadamente 794px de largura para 96dpi)
+const A4_WIDTH_PX = 794; 
 
 const App: React.FC = () => {
   const [state, setState] = useState<AppState>({
@@ -11,6 +14,37 @@ const App: React.FC = () => {
     rawList: '',
     parsedBirthdays: []
   });
+  
+  const [scale, setScale] = useState(1);
+
+  // Lógica para calcular a escala em telas pequenas
+  useEffect(() => {
+    const calculateScale = () => {
+      // Verifica se estamos em modo de impressão
+      if (window.matchMedia('print').matches) {
+        setScale(1);
+        return;
+      }
+
+      const screenWidth = window.innerWidth;
+      
+      // Se a tela for menor que 768px (mobile), calcula a escala
+      if (screenWidth < 768) {
+        // 16px de padding total (8px de cada lado, ou 1rem)
+        const availableWidth = screenWidth - 32; 
+        const newScale = availableWidth / A4_WIDTH_PX;
+        setScale(newScale);
+      } else {
+        setScale(1);
+      }
+    };
+
+    calculateScale();
+    window.addEventListener('resize', calculateScale);
+    
+    return () => window.removeEventListener('resize', calculateScale);
+  }, []);
+
 
   const handleGenerate = (rawList: string, month: number, year: number) => {
     const lines = rawList.split('\n').filter(line => line.trim() !== '');
@@ -63,7 +97,17 @@ const App: React.FC = () => {
 
       {/* Preview and Printable Area Wrapper */}
       <div className="w-full max-w-full overflow-x-auto pb-8 print:overflow-visible print:pb-0">
-        <div className="flex justify-center min-w-max md:min-w-0 print:block">
+        <div 
+          className="flex justify-center min-w-max md:min-w-0 print:block"
+          style={{ 
+            transform: `scale(${scale})`, 
+            transformOrigin: 'top center',
+            // Garante que o container pai se ajuste ao tamanho escalado no mobile
+            width: scale < 1 ? `${A4_WIDTH_PX * scale}px` : 'auto',
+            height: scale < 1 ? `${(A4_WIDTH_PX * 1.414) * scale}px` : 'auto', // 1.414 é a proporção A4
+            margin: scale < 1 ? '0 auto' : '0',
+          }}
+        >
           <PrintableArea 
             birthdays={state.parsedBirthdays}
             month={state.month}
