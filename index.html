@@ -21,11 +21,15 @@
     }
     
     .a4-wrapper {
-      width: 100%;
+      width: 100vw;
+      min-width: 0;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
       padding: 1rem 0;
-      overflow-x: auto;
+      overflow-x: visible;
+      overflow-y: visible;
+      box-sizing: border-box;
     }
 
     .a4-preview {
@@ -42,17 +46,20 @@
       transform-origin: top center;
       flex-shrink: 0;
       transition: transform 0.2s;
+      margin: 0 auto;
     }
 
-    /* Escala automática para telas menores que 210mm (aprox 794px) */
     @media screen and (max-width: 850px) {
       .a4-wrapper {
         justify-content: center;
+        align-items: flex-start;
         padding-left: 0;
         padding-right: 0;
+        width: 100vw;
       }
       .a4-preview {
-        /* A escala será aplicada via JS para melhor precisão */
+        margin-left: auto;
+        margin-right: auto;
       }
     }
 
@@ -94,10 +101,11 @@
     }
   </style>
   <script>
-    // Escala responsiva para .a4-preview em telas pequenas
+    // Escala responsiva para .a4-preview em telas pequenas e centralização
     function scaleA4Preview() {
       var a4 = document.querySelector('.a4-preview');
-      if (!a4) return;
+      var wrapper = document.querySelector('.a4-wrapper');
+      if (!a4 || !wrapper) return;
       var a4WidthPx = 794; // 210mm em px a 96dpi
       var windowWidth = window.innerWidth;
       var scale = 1;
@@ -106,12 +114,14 @@
         if (scale > 1) scale = 1;
         if (scale < 0.3) scale = 0.3;
         a4.style.transform = "scale(" + scale + ")";
-        a4.style.marginLeft = "0";
-        a4.style.marginRight = "0";
+        a4.style.marginLeft = "auto";
+        a4.style.marginRight = "auto";
+        wrapper.style.justifyContent = "center";
       } else {
         a4.style.transform = "scale(1)";
-        a4.style.marginLeft = "";
-        a4.style.marginRight = "";
+        a4.style.marginLeft = "auto";
+        a4.style.marginRight = "auto";
+        wrapper.style.justifyContent = "center";
       }
     }
     window.addEventListener('DOMContentLoaded', scaleA4Preview);
