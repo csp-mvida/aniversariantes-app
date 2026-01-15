@@ -74,6 +74,9 @@ const App: React.FC = () => {
     window.print();
   };
 
+  // Altura escalada da folha A4 em px (usada só quando scale < 1)
+  const scaledHeight = scale < 1 ? `${A4_HEIGHT_PX * scale}px` : undefined;
+
   return (
     <div className="flex flex-col items-center py-4 md:py-8 px-4 sm:px-6 print:p-0 print:m-0">
       {/* Configuration Header - Hidden on Print */}
@@ -98,7 +101,8 @@ const App: React.FC = () => {
         style={{
           overflowX: scale < 1 ? 'hidden' : 'auto',
           position: scale < 1 ? 'relative' : undefined,
-          // Removido height/minHeight para não forçar barra vertical
+          height: scale < 1 ? scaledHeight : undefined,
+          minHeight: scale < 1 ? scaledHeight : undefined,
           alignItems: scale < 1 ? 'flex-start' : undefined,
         }}
       >
@@ -113,7 +117,9 @@ const App: React.FC = () => {
               : `scale(${scale})`,
             transformOrigin: 'top center',
             margin: '0 auto',
-            display: 'block'
+            display: 'block',
+            width: scale < 1 ? `${A4_WIDTH_PX * scale}px` : undefined,
+            height: scale < 1 ? `${A4_HEIGHT_PX * scale}px` : undefined,
           }}
         >
           <PrintableArea 
