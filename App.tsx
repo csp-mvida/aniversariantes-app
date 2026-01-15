@@ -97,15 +97,21 @@ const App: React.FC = () => {
         className="w-full flex justify-center pb-0 print:overflow-visible print:pb-0 md:items-center md:min-h-[calc(100vh-180px)]"
         style={{
           overflowX: scale < 1 ? 'hidden' : 'auto',
-          height: scaledHeight, // Aplica altura escalada no mobile
-          minHeight: scaledHeight, // Garante que não haja espaço extra
-          alignItems: scale < 1 ? 'flex-start' : undefined, // Não centraliza verticalmente no mobile
+          position: scale < 1 ? 'relative' : undefined,
+          height: scale < 1 ? scaledHeight : undefined,
+          minHeight: scale < 1 ? scaledHeight : undefined,
+          alignItems: scale < 1 ? 'flex-start' : undefined,
         }}
       >
         <div 
           className="print:block"
           style={{ 
-            transform: `scale(${scale})`, 
+            position: scale < 1 ? 'absolute' : undefined,
+            top: scale < 1 ? 0 : undefined,
+            left: scale < 1 ? '50%' : undefined,
+            transform: scale < 1 
+              ? `translateX(-50%) scale(${scale})` 
+              : `scale(${scale})`,
             transformOrigin: 'top center',
             margin: '0 auto',
             display: 'block'
