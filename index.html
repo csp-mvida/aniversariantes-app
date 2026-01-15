@@ -98,33 +98,35 @@
     }
   </style>
   <script>
-    // Escala responsiva para .a4-preview em telas pequenas e centralização
+    // Escala responsiva para .a4-preview em telas pequenas, considerando largura e altura
     function scaleA4Preview() {
       var a4 = document.querySelector('.a4-preview');
       var wrapper = document.querySelector('.a4-wrapper');
       if (!a4 || !wrapper) return;
-      var a4WidthPx = 794; // 210mm em px a 96dpi
+      var a4WidthPx = 794;  // 210mm em px a 96dpi
+      var a4HeightPx = 1123; // 297mm em px a 96dpi
       var windowWidth = window.innerWidth;
-      var scale = 1;
-      if (windowWidth < a4WidthPx) {
-        scale = windowWidth / a4WidthPx;
-        if (scale > 1) scale = 1;
-        if (scale < 0.25) scale = 0.25;
-        a4.style.transform = "scale(" + scale + ")";
-        // Centraliza verticalmente se houver espaço extra
-        var scaledHeight = 1123 * scale; // 297mm em px a 96dpi
-        var windowHeight = window.innerHeight;
-        if (windowHeight > scaledHeight + 80) {
-          wrapper.style.alignItems = "center";
-        } else {
-          wrapper.style.alignItems = "flex-start";
-        }
-      } else {
-        a4.style.transform = "scale(1)";
-        wrapper.style.alignItems = "flex-start";
-      }
+      var windowHeight = window.innerHeight;
+
+      // Considera um pequeno padding para não colar nas bordas
+      var availableWidth = windowWidth - 16;
+      var availableHeight = windowHeight - 32;
+
+      var scaleW = availableWidth / a4WidthPx;
+      var scaleH = availableHeight / a4HeightPx;
+      var scale = Math.min(scaleW, scaleH, 1);
+      if (scale < 0.2) scale = 0.2;
+
+      a4.style.transform = "scale(" + scale + ")";
       a4.style.marginLeft = "auto";
       a4.style.marginRight = "auto";
+
+      // Centraliza verticalmente se houver espaço extra
+      if (windowHeight > a4HeightPx * scale + 40) {
+        wrapper.style.alignItems = "center";
+      } else {
+        wrapper.style.alignItems = "flex-start";
+      }
       wrapper.style.justifyContent = "center";
     }
     window.addEventListener('DOMContentLoaded', scaleA4Preview);
