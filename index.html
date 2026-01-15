@@ -9,9 +9,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo+Play:wght@800&family=Inter:wght@400;500;600;700;800;900&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: 'Inter', sans-serif;
       background-color: #f3f4f6;
+      overflow: hidden;
     }
     .font-cursive {
       font-family: 'Dancing Script', cursive;
@@ -21,14 +27,17 @@
     }
     .a4-wrapper {
       width: 100vw;
+      height: 100vh;
       min-width: 0;
+      min-height: 0;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      padding: 1rem 0;
-      overflow-x: hidden;
-      overflow-y: visible;
+      align-items: center;
+      overflow: hidden;
       box-sizing: border-box;
+      background: #f3f4f6;
+      padding: 0;
+      margin: 0;
     }
     .a4-preview {
       width: 210mm;
@@ -41,24 +50,10 @@
       flex-direction: column;
       align-items: center;
       overflow: hidden;
-      transform-origin: top center;
+      transform-origin: center center;
       flex-shrink: 0;
       transition: transform 0.2s;
-      margin: 0 auto;
-    }
-    @media screen and (max-width: 850px) {
-      .a4-wrapper {
-        justify-content: center;
-        align-items: flex-start;
-        padding-left: 0;
-        padding-right: 0;
-        width: 100vw;
-        overflow-x: hidden;
-      }
-      .a4-preview {
-        margin-left: auto;
-        margin-right: auto;
-      }
+      margin: 0;
     }
     @media print {
       html, body, #root {
@@ -103,31 +98,36 @@
       var a4 = document.querySelector('.a4-preview');
       var wrapper = document.querySelector('.a4-wrapper');
       if (!a4 || !wrapper) return;
-      var a4WidthPx = 794;  // 210mm em px a 96dpi
-      var a4HeightPx = 1123; // 297mm em px a 96dpi
+      // 210mm = 794px, 297mm = 1123px @ 96dpi
+      var a4WidthPx = 794;
+      var a4HeightPx = 1123;
       var windowWidth = window.innerWidth;
       var windowHeight = window.innerHeight;
 
-      // Considera um pequeno padding para não colar nas bordas
-      var availableWidth = windowWidth - 16;
-      var availableHeight = windowHeight - 32;
+      // Espaço de margem mínima para não colar nas bordas
+      var marginW = 0;
+      var marginH = 0;
+
+      var availableWidth = windowWidth - marginW;
+      var availableHeight = windowHeight - marginH;
 
       var scaleW = availableWidth / a4WidthPx;
       var scaleH = availableHeight / a4HeightPx;
       var scale = Math.min(scaleW, scaleH, 1);
-      if (scale < 0.2) scale = 0.2;
+
+      // Limite mínimo para não sumir
+      if (scale < 0.15) scale = 0.15;
 
       a4.style.transform = "scale(" + scale + ")";
-      a4.style.marginLeft = "auto";
-      a4.style.marginRight = "auto";
-
-      // Centraliza verticalmente se houver espaço extra
-      if (windowHeight > a4HeightPx * scale + 40) {
-        wrapper.style.alignItems = "center";
-      } else {
-        wrapper.style.alignItems = "flex-start";
-      }
+      // Centralização absoluta
+      a4.style.position = "absolute";
+      a4.style.top = "50%";
+      a4.style.left = "50%";
+      a4.style.transform = "translate(-50%, -50%) scale(" + scale + ")";
+      a4.style.margin = "0";
       wrapper.style.justifyContent = "center";
+      wrapper.style.alignItems = "center";
+      wrapper.style.overflow = "hidden";
     }
     window.addEventListener('DOMContentLoaded', scaleA4Preview);
     window.addEventListener('resize', scaleA4Preview);
