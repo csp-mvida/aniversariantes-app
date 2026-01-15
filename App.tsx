@@ -99,8 +99,8 @@ const App: React.FC = () => {
       <div 
         className="w-full flex justify-center pb-0 print:overflow-visible print:pb-0 md:items-center md:min-h-[calc(100vh-180px)]"
         style={{
-          overflowX: scale < 1 ? 'hidden' : 'auto',
-          minHeight: scale < 1 ? 0 : undefined, // Remove altura mínima no mobile
+          overflowX: scale < 1 ? 'hidden' : 'auto'
+          // NUNCA defina minHeight aqui!
         }}
       >
         <div 
@@ -109,7 +109,7 @@ const App: React.FC = () => {
             transform: `scale(${scale})`, 
             transformOrigin: 'top center',
             margin: '0 auto',
-            display: 'block',
+            display: 'block'
           }}
         >
           <PrintableArea 
