@@ -76,78 +76,80 @@ const App: React.FC = () => {
   const scaledHeight = scale < 1 ? `${A4_HEIGHT_PX * scale}px` : undefined;
 
   return (
-    <div className="flex flex-col items-center py-0 md:py-8 px-4 sm:px-6 print:p-0 print:m-0">
-      {/* TopBar fixa no topo */}
-      <div className="w-full no-print">
+    <div className="w-full min-h-screen flex flex-col items-center print:p-0 print:m-0 bg-gray-100">
+      {/* TopBar SEM margens, cobrindo 100% da largura */}
+      <div className="w-full no-print" style={{ margin: 0, padding: 0 }}>
         <TopBar />
       </div>
 
-      {/* Configuration Header - Hidden on Print */}
-      <div className="w-full max-w-4xl no-print mb-8 mt-6">
-        {/* Título removido daqui */}
-        <ConfigForm 
-          initialData={{ 
-            month: state.month, 
-            year: state.year, 
-            rawList: state.rawList 
-          }}
-          onGenerate={handleGenerate}
-          onPrint={handlePrint}
-        />
-      </div>
-
-      {/* Preview and Printable Area Wrapper */}
-      <div 
-        className="
-          w-full flex justify-center pb-0 print:overflow-visible print:pb-0
-          md:items-center md:justify-center md:min-h-screen
-        "
-        style={{
-          overflowX: scale < 1 ? 'hidden' : 'auto',
-          position: scale < 1 ? 'relative' : undefined,
-          height: scale < 1 ? scaledHeight : undefined,
-          minHeight: scale < 1 ? scaledHeight : undefined,
-          alignItems: scale < 1 ? 'flex-start' : undefined,
-        }}
-      >
-        <div 
-          className="print:block"
-          style={{ 
-            position: scale < 1 ? 'absolute' : undefined,
-            top: scale < 1 ? 0 : undefined,
-            left: scale < 1 ? '50%' : undefined,
-            transform: scale < 1 
-              ? `translateX(-50%) scale(${scale})` 
-              : `scale(${scale})`,
-            transformOrigin: 'top center',
-            margin: '0 auto',
-            display: 'block',
-            // Ajuste especial para tablet (md:), centralizando e ajustando à largura da tela
-            ...(window.innerWidth >= 768 && window.innerWidth < 1024
-              ? {
-                  width: '100vw',
-                  maxWidth: '100vw',
-                  height: 'auto',
-                  maxHeight: 'calc(100vh - 64px)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }
-              : {})
-          }}
-        >
-          <PrintableArea 
-            birthdays={state.parsedBirthdays}
-            month={state.month}
-            year={state.year}
+      {/* Restante do conteúdo, com padding apenas nas laterais e abaixo */}
+      <div className="flex flex-col items-center w-full flex-1 py-0 md:py-8 px-4 sm:px-6">
+        {/* Configuration Header - Hidden on Print */}
+        <div className="w-full max-w-4xl no-print mb-8 mt-6">
+          <ConfigForm 
+            initialData={{ 
+              month: state.month, 
+              year: state.year, 
+              rawList: state.rawList 
+            }}
+            onGenerate={handleGenerate}
+            onPrint={handlePrint}
           />
         </div>
-      </div>
 
-      {/* Floating Instructions - Hidden on Print */}
-      <div className="no-print mt-4 max-w-2xl text-center text-gray-500 text-sm px-4">
-        <p>Utilize o formato <b>DIA / NOME / DEPARTAMENTO</b> para preencher a lista.</p>
-        <p className="mt-1 opacity-75">A visualização acima respeita as proporções da folha A4.</p>
+        {/* Preview and Printable Area Wrapper */}
+        <div 
+          className="
+            w-full flex justify-center pb-0 print:overflow-visible print:pb-0
+            md:items-center md:justify-center md:min-h-screen
+          "
+          style={{
+            overflowX: scale < 1 ? 'hidden' : 'auto',
+            position: scale < 1 ? 'relative' : undefined,
+            height: scale < 1 ? scaledHeight : undefined,
+            minHeight: scale < 1 ? scaledHeight : undefined,
+            alignItems: scale < 1 ? 'flex-start' : undefined,
+          }}
+        >
+          <div 
+            className="print:block"
+            style={{ 
+              position: scale < 1 ? 'absolute' : undefined,
+              top: scale < 1 ? 0 : undefined,
+              left: scale < 1 ? '50%' : undefined,
+              transform: scale < 1 
+                ? `translateX(-50%) scale(${scale})` 
+                : `scale(${scale})`,
+              transformOrigin: 'top center',
+              margin: '0 auto',
+              display: 'block',
+              // Ajuste especial para tablet (md:), centralizando e ajustando à largura da tela
+              ...(window.innerWidth >= 768 && window.innerWidth < 1024
+                ? {
+                    width: '100vw',
+                    maxWidth: '100vw',
+                    height: 'auto',
+                    maxHeight: 'calc(100vh - 64px)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }
+                : {})
+            }}
+          >
+            <PrintableArea 
+              birthdays={state.parsedBirthdays}
+              month={state.month}
+              year={state.year}
+            />
+          </div>
+        </div>
+
+        {/* Floating Instructions - Hidden on Print */}
+        <div className="no-print mt-4 max-w-2xl text-center text-gray-500 text-sm px-4">
+          <p>Utilize o formato <b>DIA / NOME / DEPARTAMENTO</b> para preencher a lista.</p>
+          <p className="mt-1 opacity-75">A visualização acima respeita as proporções da folha A4.</p>
+        </div>
       </div>
     </div>
   );
