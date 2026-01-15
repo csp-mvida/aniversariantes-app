@@ -42,7 +42,7 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
       {birthdays.map((person, idx) => (
         <div 
           key={`${person.day}-${person.name}-${idx}`}
-          className="grid grid-cols-[75px_1fr_170px] items-center py-1" /* Ajustado de py-0.5 para py-1 */
+          className="grid grid-cols-[75px_1fr_170px] items-center py-1"
           style={{ 
             borderBottom: '1px dotted #dbdbdb',
           }}
@@ -54,7 +54,8 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
             </span>
           </span>
           
-          <span className="font-bold text-[14px] text-gray-900 tracking-tight pl-2 whitespace-nowrap overflow-hidden text-ellipsis">
+          {/* Peso da fonte reduzido de font-bold para font-semibold */}
+          <span className="font-semibold text-[14px] text-gray-900 tracking-tight pl-2 whitespace-nowrap overflow-hidden text-ellipsis">
             {capitalizeName(person.name)}
           </span>
           
