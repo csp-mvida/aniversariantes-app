@@ -15,9 +15,10 @@ const TopBar: React.FC = () => (
     <div className="flex items-center gap-2">
       <Cake size={20} color="#fff" className="flex-shrink-0" />
       <span
-        className="text-white text-sm md:text-base font-medium tracking-normal select-none uppercase font-['Roboto',sans-serif]"
+        className="text-white text-sm md:text-base font-medium tracking-normal select-none font-['Roboto',sans-serif]"
+        style={{ textTransform: 'none' }}
       >
-        Gerador de Calendário
+        Gerador de <span className="lowercase">de</span> Calendário
         <span
           className="ml-1 font-bold"
           style={{ color: COLORS.detail }}
