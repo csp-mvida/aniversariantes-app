@@ -21,12 +21,10 @@
     }
     @media print {
       html, body {
-        background: none !important;
         margin: 0 !important;
         padding: 0 !important;
         height: 100% !important;
         width: 100% !important;
-        overflow: hidden !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
@@ -53,16 +51,16 @@
         align-items: center !important;
         box-sizing: border-box !important;
         overflow: hidden !important;
-        background: none !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
-      /* O background será aplicado inline no React, então não precisa aqui */
     }
     .a4-preview {
       width: 210mm;
       height: 297mm;
       background: white;
       box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      padding: 20mm 20mm;
+      padding: 0;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;

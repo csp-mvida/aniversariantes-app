@@ -14,13 +14,13 @@ interface PrintableAreaProps {
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
   return (
     <div
-      className="a4-container a4-preview flex flex-col items-center relative overflow-hidden"
+      className="a4-container a4-preview"
       id="printable-content"
       style={{
         position: "relative",
         backgroundImage: "url('/background-aniversario.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center center",
+        backgroundSize: "210mm 297mm",
+        backgroundPosition: "top left",
         backgroundRepeat: "no-repeat",
         width: "210mm",
         height: "297mm",
@@ -31,6 +31,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         margin: 0,
         padding: 0,
         boxSizing: "border-box",
+        WebkitPrintColorAdjust: "exact",
       }}
     >
       <div
@@ -40,7 +41,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           padding: "0 0",
         }}
       >
-        {/* Grade do calendário */}
+        {/* Grade do calendário - Ajuste a margem superior se necessário para alinhar com a imagem */}
         <section className="w-full mb-3 mt-[60mm] px-[18mm]">
           <CalendarGrid
             month={month}
