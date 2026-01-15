@@ -35,8 +35,6 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
         className={cellBaseStyle}
         style={{ 
           backgroundColor: hasBirthday ? COLORS.detail : 'transparent',
-          // Se for aniversário, usamos uma borda interna (inset) ou sobrepomos com cuidado
-          // Para manter a consistência da grade, a borda pontilhada externa permanece
         }}
       >
         <div className={`w-full h-full flex items-center justify-center ${hasBirthday ? 'border-2 border-white border-solid' : ''}`}>
@@ -59,12 +57,12 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   
   return (
     <div className="w-full">
-      {/* Cabeçalho dos dias da semana */}
-      <div className="grid grid-cols-7 gap-px mb-4 bg-gray-200 border border-gray-200">
+      {/* Cabeçalho dos dias da semana - Aumentado o mb-4 para mb-6 */}
+      <div className="grid grid-cols-7 gap-px mb-6 bg-gray-200 border border-gray-200">
         {customWeekdays.map(day => (
           <div 
             key={day} 
-            className="text-center py-2.5 font-black text-[11px] text-white tracking-[0.15em] uppercase"
+            className="text-center py-2.5 font-bold text-[13px] text-white tracking-[0.15em] uppercase"
             style={{ 
               backgroundColor: COLORS.dark,
             }}
