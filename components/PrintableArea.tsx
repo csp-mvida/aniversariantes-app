@@ -4,7 +4,6 @@ import React from 'react';
 import { BirthdayEntry } from '../types';
 import CalendarGrid from './CalendarGrid';
 import BirthdayTable from './BirthdayTable';
-import { MONTHS } from '../constants';
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -35,16 +34,6 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         WebkitPrintColorAdjust: "exact",
       }}
     >
-      {/* Overlay para o Mês/Ano sobre a tarja do background */}
-      <div 
-        className="absolute top-[118px] left-0 w-full text-center no-print"
-        style={{ pointerEvents: 'none' }}
-      >
-        <span className="text-white font-bold text-[22px] lowercase tracking-widest">
-          {MONTHS[month]} / {year}
-        </span>
-      </div>
-
       <div
         className="w-full flex flex-col items-center relative z-10"
         style={{
