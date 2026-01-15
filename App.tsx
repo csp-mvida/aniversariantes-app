@@ -3,6 +3,7 @@ import { BirthdayEntry, AppState } from './types';
 import { COLORS } from './constants';
 import ConfigForm from './components/ConfigForm';
 import PrintableArea from './components/PrintableArea';
+import TopBar from './components/TopBar';
 
 // Dimensões A4 em pixels (aproximadamente 794px x 1122px para 96dpi)
 const A4_WIDTH_PX = 794;
@@ -75,12 +76,15 @@ const App: React.FC = () => {
   const scaledHeight = scale < 1 ? `${A4_HEIGHT_PX * scale}px` : undefined;
 
   return (
-    <div className="flex flex-col items-center py-4 md:py-8 px-4 sm:px-6 print:p-0 print:m-0">
+    <div className="flex flex-col items-center py-0 md:py-8 px-4 sm:px-6 print:p-0 print:m-0">
+      {/* TopBar fixa no topo */}
+      <div className="w-full no-print">
+        <TopBar />
+      </div>
+
       {/* Configuration Header - Hidden on Print */}
-      <div className="w-full max-w-4xl no-print mb-8">
-        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center md:text-left" style={{ color: COLORS.dark }}>
-          🎂 Gerador de Aniversariantes
-        </h1>
+      <div className="w-full max-w-4xl no-print mb-8 mt-6">
+        {/* Título removido daqui */}
         <ConfigForm 
           initialData={{ 
             month: state.month, 
