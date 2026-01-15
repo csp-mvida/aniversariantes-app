@@ -19,7 +19,6 @@
     .font-cairo-play {
       font-family: 'Cairo Play', sans-serif;
     }
-    
     .a4-wrapper {
       width: 100vw;
       min-width: 0;
@@ -27,11 +26,10 @@
       justify-content: center;
       align-items: flex-start;
       padding: 1rem 0;
-      overflow-x: visible;
+      overflow-x: hidden;
       overflow-y: visible;
       box-sizing: border-box;
     }
-
     .a4-preview {
       width: 210mm;
       height: 297mm;
@@ -48,7 +46,6 @@
       transition: transform 0.2s;
       margin: 0 auto;
     }
-
     @media screen and (max-width: 850px) {
       .a4-wrapper {
         justify-content: center;
@@ -56,13 +53,13 @@
         padding-left: 0;
         padding-right: 0;
         width: 100vw;
+        overflow-x: hidden;
       }
       .a4-preview {
         margin-left: auto;
         margin-right: auto;
       }
     }
-
     @media print {
       html, body, #root {
         margin: 0 !important;
@@ -109,20 +106,26 @@
       var a4WidthPx = 794; // 210mm em px a 96dpi
       var windowWidth = window.innerWidth;
       var scale = 1;
-      if (windowWidth < a4WidthPx + 32) { // 32px de margem
-        scale = (windowWidth - 24) / a4WidthPx; // 12px padding de cada lado
+      if (windowWidth < a4WidthPx) {
+        scale = windowWidth / a4WidthPx;
         if (scale > 1) scale = 1;
-        if (scale < 0.3) scale = 0.3;
+        if (scale < 0.25) scale = 0.25;
         a4.style.transform = "scale(" + scale + ")";
-        a4.style.marginLeft = "auto";
-        a4.style.marginRight = "auto";
-        wrapper.style.justifyContent = "center";
+        // Centraliza verticalmente se houver espaço extra
+        var scaledHeight = 1123 * scale; // 297mm em px a 96dpi
+        var windowHeight = window.innerHeight;
+        if (windowHeight > scaledHeight + 80) {
+          wrapper.style.alignItems = "center";
+        } else {
+          wrapper.style.alignItems = "flex-start";
+        }
       } else {
         a4.style.transform = "scale(1)";
-        a4.style.marginLeft = "auto";
-        a4.style.marginRight = "auto";
-        wrapper.style.justifyContent = "center";
+        wrapper.style.alignItems = "flex-start";
       }
+      a4.style.marginLeft = "auto";
+      a4.style.marginRight = "auto";
+      wrapper.style.justifyContent = "center";
     }
     window.addEventListener('DOMContentLoaded', scaleA4Preview);
     window.addEventListener('resize', scaleA4Preview);
