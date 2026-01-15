@@ -6,7 +6,6 @@ import { MONTHS, COLORS } from '../constants';
 import CalendarGrid from './CalendarGrid';
 import BirthdayTable from './BirthdayTable';
 import WatermarkBalloons from './WatermarkBalloons';
-import { Balloon } from 'lucide-react';
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -34,58 +33,18 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           maxHeight: `calc(100% - ${FOOTER_HEIGHT_MM}mm)`,
         }}
       >
-        {/* Header Premium Linha Única */}
-        <header
-          className="w-full flex items-center justify-between gap-2 mb-4"
-          style={{
-            background: COLORS.white,
-            borderRadius: "18px 18px 0 0",
-            boxShadow: "0 4px 18px 0 rgba(4,114,75,0.10)",
-            padding: "18px 32px 18px 28px",
-            borderBottom: `6px solid ${COLORS.primary}`,
-            marginTop: "-18px",
-            minHeight: "80px",
-          }}
-        >
-          {/* Ícone e Título */}
-          <div className="flex items-center gap-3 min-w-0">
-            <Balloon size={36} color={COLORS.primary} strokeWidth={2.2} className="opacity-90 drop-shadow" />
-            <span
-              className="font-extrabold uppercase tracking-widest text-[1.45rem] sm:text-[1.7rem] text-[#04724b] truncate"
-              style={{
-                fontFamily: "'Cairo Play', 'Inter', sans-serif",
-                letterSpacing: "0.13em",
-                textShadow: "0 2px 8px #e0f7ef",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Aniversariantes
-            </span>
-          </div>
-          {/* Mês centralizado */}
-          <span
-            className="font-cursive text-[#03c17e] font-bold text-[2.1rem] sm:text-[2.5rem] leading-none mx-4"
-            style={{
-              fontFamily: "'Dancing Script', cursive",
-              textShadow: "0 2px 8px #a0c4ff",
-              letterSpacing: "0.04em",
-              whiteSpace: "nowrap",
-            }}
+        {/* Bloco 1: Header */}
+        <header className="flex flex-col items-center text-center w-full relative -mt-10 mb-4">
+          <div className="w-16 h-1 mb-3" style={{ backgroundColor: COLORS.primary }}></div>
+          <h1 
+            className="text-4xl font-cairo-play font-[800] tracking-[0.1em] mb-[-12px]"
+            style={{ color: COLORS.primary }}
           >
+            Aniversariantes
+          </h1>
+          <p className="font-cursive text-6xl text-gray-800 lowercase relative z-10">
             de {MONTHS[month]}
-          </span>
-          {/* Subtítulo à direita */}
-          <span
-            className="text-[1.05rem] text-gray-600 font-medium tracking-wide text-right min-w-0 truncate"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              letterSpacing: "0.04em",
-              textShadow: "0 1px 4px #e0f7ef",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {year}
-          </span>
+          </p>
         </header>
 
         {/* Bloco 2: Calendar Section */}
