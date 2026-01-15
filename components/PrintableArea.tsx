@@ -28,9 +28,11 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         minHeight: "297mm",
         maxWidth: "210mm",
         maxHeight: "297mm",
+        margin: 0,
+        padding: 0,
+        boxSizing: "border-box",
       }}
     >
-      {/* Conteúdo principal sem header e footer */}
       <div
         className="w-full flex flex-col items-center relative z-10"
         style={{
