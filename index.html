@@ -19,13 +19,6 @@
     .font-cairo-play {
       font-family: 'Cairo Play', sans-serif;
     }
-    .a4-container {
-      background-image: url('/bg-1.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-attachment: fixed;
-    }
     @media print {
       .no-print {
         display: none !important;
@@ -47,7 +40,7 @@
         width: 210mm !important;
         height: 297mm !important;
         margin: 0 auto !important;
-        padding: 20mm 20mm 0mm 20mm !important;
+        padding: 20mm 20mm 0mm 20mm !important; /* padding-bottom: 0mm para o footer encostar na borda */
         border: none !important;
         box-shadow: none !important;
         display: flex !important;
@@ -55,13 +48,6 @@
         align-items: center !important;
         box-sizing: border-box !important;
         overflow: hidden !important;
-        background-image: url('/bg-1.jpg') !important;
-        background-size: cover !important;
-        background-repeat: no-repeat !important;
-        background-position: center center !important;
-        background-attachment: fixed !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
       }
       .print-footer-safe {
         position: fixed !important;
