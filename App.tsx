@@ -94,7 +94,10 @@ const App: React.FC = () => {
 
       {/* Preview and Printable Area Wrapper */}
       <div 
-        className="w-full flex justify-center pb-0 print:overflow-visible print:pb-0 md:items-center md:min-h-[calc(100vh-180px)]"
+        className="
+          w-full flex justify-center pb-0 print:overflow-visible print:pb-0
+          md:items-center md:justify-center md:min-h-screen
+        "
         style={{
           overflowX: scale < 1 ? 'hidden' : 'auto',
           position: scale < 1 ? 'relative' : undefined,
@@ -114,7 +117,19 @@ const App: React.FC = () => {
               : `scale(${scale})`,
             transformOrigin: 'top center',
             margin: '0 auto',
-            display: 'block'
+            display: 'block',
+            // Ajuste especial para tablet (md:), centralizando e ajustando à largura da tela
+            ...(window.innerWidth >= 768 && window.innerWidth < 1024
+              ? {
+                  width: '100vw',
+                  maxWidth: '100vw',
+                  height: 'auto',
+                  maxHeight: 'calc(100vh - 64px)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }
+              : {})
           }}
         >
           <PrintableArea 
