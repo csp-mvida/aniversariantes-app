@@ -14,7 +14,12 @@ const TopBar: React.FC = () => (
   >
     <div className="flex items-center gap-2">
       <Cake size={26} color="#fff" className="flex-shrink-0" />
-      <span className="text-white text-lg md:text-xl font-bold font-cairo-play tracking-wide select-none">
+      <span
+        className="text-white text-lg md:text-xl font-bold tracking-wide select-none"
+        style={{
+          fontFamily: "'Cairo Play', sans-serif",
+        }}
+      >
         Gerador de Calendário
       </span>
     </div>
