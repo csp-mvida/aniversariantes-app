@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { BirthdayEntry, AppState } from './types';
-import { MONTHS, COLORS } from './constants';
+import { COLORS } from './constants';
 import ConfigForm from './components/ConfigForm';
 import PrintableArea from './components/PrintableArea';
 
@@ -44,10 +44,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8 print:p-0 print:m-0">
+    <div className="flex flex-col items-center py-4 md:py-8 px-4 sm:px-6 print:p-0 print:m-0">
       {/* Configuration Header - Hidden on Print */}
       <div className="w-full max-w-4xl no-print mb-8">
-        <h1 className="text-3xl font-bold mb-6" style={{ color: COLORS.dark }}>
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center md:text-left" style={{ color: COLORS.dark }}>
           🎂 Gerador de Aniversariantes
         </h1>
         <ConfigForm 
@@ -61,19 +61,21 @@ const App: React.FC = () => {
         />
       </div>
 
-      {/* Preview and Printable Area */}
-      <div className="w-full max-w-4xl print:max-w-none flex justify-center print:block">
-        <PrintableArea 
-          birthdays={state.parsedBirthdays}
-          month={state.month}
-          year={state.year}
-        />
+      {/* Preview and Printable Area Wrapper */}
+      <div className="w-full max-w-full overflow-x-auto pb-8 print:overflow-visible print:pb-0">
+        <div className="flex justify-center min-w-max md:min-w-0 print:block">
+          <PrintableArea 
+            birthdays={state.parsedBirthdays}
+            month={state.month}
+            year={state.year}
+          />
+        </div>
       </div>
 
       {/* Floating Instructions - Hidden on Print */}
-      <div className="no-print mt-12 max-w-2xl text-center text-gray-500 text-sm">
-        <p>Utilize o formato <b>DIA / NOME / DEPARTAMENTO</b> (ex: 15 / Maria Silva / Financeiro) para preencher a lista. </p>
-        <p>A área branca acima é uma simulação da folha A4 que será impressa.</p>
+      <div className="no-print mt-4 max-w-2xl text-center text-gray-500 text-sm px-4">
+        <p>Utilize o formato <b>DIA / NOME / DEPARTAMENTO</b> para preencher a lista.</p>
+        <p className="mt-1 opacity-75">A visualização acima respeita as proporções da folha A4.</p>
       </div>
     </div>
   );
