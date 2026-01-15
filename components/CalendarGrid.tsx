@@ -57,8 +57,8 @@ const CalendarGrid: React.FC<CalendarGridProps> = ({ month, year, birthdays }) =
   
   return (
     <div className="w-full">
-      {/* Cabeçalho dos dias da semana - Aumentado o mb-4 para mb-6 */}
-      <div className="grid grid-cols-7 gap-px mb-6 bg-gray-200 border border-gray-200">
+      {/* Cabeçalho dos dias da semana - Reduzido de mb-6 para mb-2 */}
+      <div className="grid grid-cols-7 gap-px mb-2 bg-gray-200 border border-gray-200">
         {customWeekdays.map(day => (
           <div 
             key={day} 

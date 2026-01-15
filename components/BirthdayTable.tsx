@@ -25,8 +25,8 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
   const formatMonth = (month + 1).toString().padStart(2, '0');
 
   return (
-    <div className="w-full flex flex-col gap-y-0 pb-10"> {/* Adicionada margem de segurança no final */}
-      {/* Cabeçalho das colunas - Fonte aumentada para 11px */}
+    <div className="w-full flex flex-col gap-y-0 pb-10">
+      {/* Cabeçalho das colunas */}
       <div className="grid grid-cols-[75px_1fr_170px] items-center pb-1 mb-1 border-b border-gray-200">
         <span className="text-[11px] text-gray-500 font-bold uppercase tracking-wider text-left">
           Data
@@ -42,7 +42,7 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
       {birthdays.map((person, idx) => (
         <div 
           key={`${person.day}-${person.name}-${idx}`}
-          className="grid grid-cols-[75px_1fr_170px] items-center py-1.5" /* Aumentado o entrelinhamento (py-1.5) */
+          className="grid grid-cols-[75px_1fr_170px] items-center py-0.5" /* Reduzido o entrelinhamento para py-0.5 */
           style={{ 
             borderBottom: '1px dotted #dbdbdb',
           }}
