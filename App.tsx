@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { BirthdayEntry, AppState } from './types';
 import { MONTHS, COLORS } from './constants';
@@ -45,7 +44,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col items-center py-8 px-4 sm:px-6 lg:px-8 print:p-0 print:m-0">
       {/* Configuration Header - Hidden on Print */}
       <div className="w-full max-w-4xl no-print mb-8">
         <h1 className="text-3xl font-bold mb-6" style={{ color: COLORS.dark }}>
@@ -63,7 +62,7 @@ const App: React.FC = () => {
       </div>
 
       {/* Preview and Printable Area */}
-      <div className="w-full max-w-4xl print:max-w-none flex justify-center">
+      <div className="w-full max-w-4xl print:max-w-none flex justify-center print:block">
         <PrintableArea 
           birthdays={state.parsedBirthdays}
           month={state.month}
