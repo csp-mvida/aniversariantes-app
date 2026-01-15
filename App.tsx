@@ -97,18 +97,16 @@ const App: React.FC = () => {
 
       {/* Preview and Printable Area Wrapper */}
       <div 
-        className="w-full flex justify-center items-center min-h-0 md:min-h-[calc(100vh-180px)] pb-0 print:overflow-visible print:pb-0"
+        className="w-full flex justify-center pb-0 print:overflow-visible print:pb-0 md:items-center md:min-h-[calc(100vh-180px)]"
         style={{ overflowX: scale < 1 ? 'hidden' : 'auto' }}
       >
         <div 
-          className="print:block flex"
+          className="print:block"
           style={{ 
             transform: `scale(${scale})`, 
             transformOrigin: 'top center',
             margin: '0 auto',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            display: 'block',
           }}
         >
           <PrintableArea 
