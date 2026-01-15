@@ -2,6 +2,8 @@ import React from 'react';
 import { Cake } from 'lucide-react';
 import { COLORS } from '../constants';
 
+const LIGHTER_GREEN = '#7fffd4'; // Verde água claro para maior contraste
+
 const TopBar: React.FC = () => (
   <div
     className="w-full flex justify-center items-center"
@@ -20,8 +22,8 @@ const TopBar: React.FC = () => (
       >
         Gerador de <span className="lowercase">de</span> Calendário
         <span
-          className="ml-1 font-extrabold"
-          style={{ color: COLORS.detail }}
+          className="ml-1 font-black"
+          style={{ color: LIGHTER_GREEN }}
         >
           /2026
         </span>
