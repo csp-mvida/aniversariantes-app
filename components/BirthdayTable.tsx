@@ -26,15 +26,15 @@ const BirthdayTable: React.FC<BirthdayTableProps> = ({ birthdays, month }) => {
 
   return (
     <div className="w-full flex flex-col gap-y-0">
-      {/* Cabeçalho das colunas - Espaçamento reduzido */}
+      {/* Cabeçalho das colunas - Agora com font-bold */}
       <div className="grid grid-cols-[80px_1fr_170px] items-center pb-0.5 mb-0.5">
-        <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-wide text-left">
+        <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wide text-left">
           Data
         </span>
-        <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-wide text-left pl-4">
+        <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wide text-left pl-4">
           Aniversariantes
         </span>
-        <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-wide text-left pl-4">
+        <span className="text-[10px] text-gray-500 font-bold uppercase tracking-wide text-left pl-4">
           Núcleo/Departamento
         </span>
       </div>
