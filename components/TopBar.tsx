@@ -18,6 +18,12 @@ const TopBar: React.FC = () => (
         className="text-white text-sm md:text-base font-medium tracking-normal select-none uppercase font-['Roboto',sans-serif]"
       >
         Gerador de Calendário
+        <span
+          className="ml-1 font-bold"
+          style={{ color: COLORS.detail }}
+        >
+          /2026
+        </span>
       </span>
     </div>
   </div>
