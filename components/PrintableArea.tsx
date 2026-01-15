@@ -41,8 +41,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           padding: "0 0",
         }}
       >
-        {/* Bloco 1 (Calendário) - Margem superior ajustada para 52mm (distância de segurança) */}
-        <section className="w-[65%] mb-3 mt-[52mm]">
+        {/* Bloco 1 (Calendário) - Margem superior de segurança e margem inferior aumentada */}
+        <section className="w-[65%] mb-8 mt-[52mm]">
           <CalendarGrid
             month={month}
             year={year}
