@@ -12,13 +12,18 @@ interface PrintableAreaProps {
 }
 
 const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year }) => {
+  // Calcula o número do mês (1 a 12) e formata com zero à esquerda
+  const monthNumber = String(month + 1).padStart(2, '0');
+  const dynamicBackgroundPath = `/background-${monthNumber}.jpg`;
+
   return (
     <div
       className="a4-container a4-preview"
       id="printable-content"
       style={{
         position: "relative",
-        backgroundImage: "url('/background-aniversario.jpg')",
+        // Usa o caminho dinâmico da imagem
+        backgroundImage: `url('${dynamicBackgroundPath}')`,
         backgroundSize: "210mm 297mm",
         backgroundPosition: "top left",
         backgroundRepeat: "no-repeat",
