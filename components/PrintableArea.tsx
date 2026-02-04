@@ -4,7 +4,6 @@ import React from 'react';
 import { BirthdayEntry } from '../types';
 import CalendarGrid from './CalendarGrid';
 import BirthdayTable from './BirthdayTable';
-import WatermarkBalloons from './WatermarkBalloons'; // Importando o componente
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -40,8 +39,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         WebkitPrintColorAdjust: "exact",
       }}
     >
-      {/* Adiciona a marca d'água de balões */}
-      <WatermarkBalloons />
+      {/* WatermarkBalloons removido, pois o background já contém elementos gráficos */}
       
       <div
         className="w-full flex flex-col items-center relative z-10"
@@ -50,8 +48,8 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
           padding: "0 0",
         }}
       >
-        {/* Bloco 1 (Calendário) - Margem superior de segurança e margem inferior aumentada */}
-        <section className="w-[65%] mb-8 mt-[52mm]">
+        {/* Bloco 1 (Calendário) - Ajustando a margem superior para o novo design do background */}
+        <section className="w-[65%] mb-8 mt-[100mm]">
           <CalendarGrid
             month={month}
             year={year}
