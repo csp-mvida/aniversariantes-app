@@ -4,6 +4,7 @@ import React from 'react';
 import { BirthdayEntry } from '../types';
 import CalendarGrid from './CalendarGrid';
 import BirthdayTable from './BirthdayTable';
+import WatermarkBalloons from './WatermarkBalloons'; // Importando o componente
 
 interface PrintableAreaProps {
   birthdays: BirthdayEntry[];
@@ -39,6 +40,9 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         WebkitPrintColorAdjust: "exact",
       }}
     >
+      {/* Adiciona a marca d'água de balões */}
+      <WatermarkBalloons />
+      
       <div
         className="w-full flex flex-col items-center relative z-10"
         style={{
