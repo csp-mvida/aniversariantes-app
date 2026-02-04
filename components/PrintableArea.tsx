@@ -49,7 +49,7 @@ const PrintableArea: React.FC<PrintableAreaProps> = ({ birthdays, month, year })
         }}
       >
         {/* Bloco 1 (Calendário) - Ajustando a margem superior para o novo design do background */}
-        <section className="w-[65%] mb-8 mt-[100mm]">
+        <section className="w-[65%] mb-8 mt-[50mm]">
           <CalendarGrid
             month={month}
             year={year}
