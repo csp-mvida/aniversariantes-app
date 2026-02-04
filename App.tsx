@@ -22,7 +22,7 @@ const App: React.FC = () => {
   // Lógica para calcular a escala em telas pequenas
   useEffect(() => {
     const calculateScale = () => {
-      // Verifica se estamos em modo de impressão
+      // Se estiver em modo de impressão, garantimos que a escala é 1 e saímos.
       if (window.matchMedia('print').matches) {
         setScale(1);
         return;
@@ -75,6 +75,33 @@ const App: React.FC = () => {
   // Altura escalada da folha A4 em px
   const scaledHeight = scale < 1 ? `${A4_HEIGHT_PX * scale}px` : undefined;
 
+  // Estilos condicionais para a visualização em tela pequena (scale < 1)
+  const outerWrapperStyles = scale < 1 ? {
+    overflowX: 'hidden' as const,
+    position: 'relative' as const,
+    height: scaledHeight,
+    minHeight: scaledHeight,
+    alignItems: 'flex-start' as const,
+  } : {
+    overflowX: 'auto' as const,
+  };
+
+  const innerWrapperStyles = scale < 1 ? {
+    position: 'absolute' as const,
+    top: 0,
+    left: '50%',
+    transform: `translateX(-50%) scale(${scale})`,
+    transformOrigin: 'top center',
+    margin: '0 auto',
+    display: 'block',
+  } : {
+    transform: `scale(${scale})`, // Mantém a escala 1 para desktop/print
+    transformOrigin: 'top center',
+    margin: '0 auto',
+    display: 'block',
+  };
+
+
   return (
     <div className="w-full min-h-screen flex flex-col items-center print:p-0 print:m-0 bg-gray-100">
       {/* TopBar SEM margens, cobrindo 100% da largura */}
@@ -103,39 +130,11 @@ const App: React.FC = () => {
             w-full flex justify-center pb-0 print:overflow-visible print:pb-0
             md:items-center md:justify-center md:min-h-screen
           "
-          style={{
-            overflowX: scale < 1 ? 'hidden' : 'auto',
-            position: scale < 1 ? 'relative' : undefined,
-            height: scale < 1 ? scaledHeight : undefined,
-            minHeight: scale < 1 ? scaledHeight : undefined,
-            alignItems: scale < 1 ? 'flex-start' : undefined,
-          }}
+          style={outerWrapperStyles}
         >
           <div 
             className="print:block"
-            style={{ 
-              position: scale < 1 ? 'absolute' : undefined,
-              top: scale < 1 ? 0 : undefined,
-              left: scale < 1 ? '50%' : undefined,
-              transform: scale < 1 
-                ? `translateX(-50%) scale(${scale})` 
-                : `scale(${scale})`,
-              transformOrigin: 'top center',
-              margin: '0 auto',
-              display: 'block',
-              // Ajuste especial para tablet (md:), centralizando e ajustando à largura da tela
-              ...(window.innerWidth >= 768 && window.innerWidth < 1024
-                ? {
-                    width: '100vw',
-                    maxWidth: '100vw',
-                    height: 'auto',
-                    maxHeight: 'calc(100vh - 64px)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }
-                : {})
-            }}
+            style={innerWrapperStyles}
           >
             <PrintableArea 
               birthdays={state.parsedBirthdays}
