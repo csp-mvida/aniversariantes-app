@@ -86,6 +86,7 @@ const App: React.FC = () => {
     overflowX: 'auto' as const,
   };
 
+  // Se scale for 1 (desktop ou print), não aplicamos estilos inline de transformação/posicionamento.
   const innerWrapperStyles = scale < 1 ? {
     position: 'absolute' as const,
     top: 0,
@@ -94,13 +95,7 @@ const App: React.FC = () => {
     transformOrigin: 'top center',
     margin: '0 auto',
     display: 'block',
-  } : {
-    transform: `scale(${scale})`, // Mantém a escala 1 para desktop/print
-    transformOrigin: 'top center',
-    margin: '0 auto',
-    display: 'block',
-  };
-
+  } : undefined; // Retorna undefined se scale é 1
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center print:p-0 print:m-0 bg-gray-100">
@@ -134,7 +129,7 @@ const App: React.FC = () => {
         >
           <div 
             className="print:block"
-            style={innerWrapperStyles}
+            style={innerWrapperStyles} // Agora é undefined se scale=1
           >
             <PrintableArea 
               birthdays={state.parsedBirthdays}
